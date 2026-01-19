@@ -576,7 +576,7 @@ modded class BleedingSourcesManagerServer
 				m_Player.GetTerjeStats().IncrementKnockoutFinisher();
 			}
 		}
-		else if (dammo == "FlashGrenade_Ammo")
+		else if (ammoType == "FlashGrenade_Ammo")
 		{
 			playerTakeDammage = true;
 			if (!isInKnockout && TerjeOverrideProcessHit_FlashGrenade(damage, source, component, zone, ammo, modelPos, playerTakeDammage) && playerTakeDammage)
