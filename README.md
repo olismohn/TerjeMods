@@ -17,7 +17,9 @@ This includes, but is not limited to:
 - selling the modifications or any part of the code,
 - using the code in paid products or services,
 - monetizing servers or projects where TerjeMods are a core component,
-- generating direct or indirect revenue through advertising, subscriptions, or donations linked to the use of this code.
+- generating direct or indirect revenue through advertising or subscriptions to the use of this code.
+
+*Collecting voluntary donations without receiving any benefit is permitted and is not considered a paid service.*
 
 ## Attribution
 
