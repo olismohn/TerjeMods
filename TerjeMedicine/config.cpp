@@ -57,6 +57,7 @@ class CfgMods
 
 class CfgTerjeSkills
 {
+	class SkillsBase;
 	#include "immunity.hpp"
 	#include "medicine.hpp"
 };

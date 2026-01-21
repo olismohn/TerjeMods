@@ -56,7 +56,8 @@ class CfgMods
 
 class CfgTerjeSkills
 {
-	class Immunity
+	class SkillsBase;
+	class Immunity: SkillsBase
 	{
 		class Perks
 		{
