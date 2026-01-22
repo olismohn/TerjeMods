@@ -138,74 +138,59 @@ class CfgVehicles
 	};
 
 	class HouseNoDestruct;
-	class StaticObj_TerjeBookImmunity1: HouseNoDestruct
+	class StaticObj_TerjeBook: HouseNoDestruct
 	{
-		scope=1;
 		model="DZ\gear\books\Book_kniga.p3d";
 		hiddenSelections[]={"camoGround"};
+	};
+	class StaticObj_TerjeBookImmunity1: StaticObj_TerjeBook
+	{
+		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_immunity1_co.paa"};
 	};
-	class StaticObj_TerjeBookImmunity2: HouseNoDestruct
+	class StaticObj_TerjeBookImmunity2: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_immunity2_co.paa"};
 	};
-	class StaticObj_TerjeBookImmunity3: HouseNoDestruct
+	class StaticObj_TerjeBookImmunity3: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_immunity3_co.paa"};
 	};
-	class StaticObj_TerjeBookImmunity4: HouseNoDestruct
+	class StaticObj_TerjeBookImmunity4: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_immunity4_co.paa"};
 	};
-	class StaticObj_TerjeBookImmunity5: HouseNoDestruct
+	class StaticObj_TerjeBookImmunity5: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_immunity5_co.paa"};
 	};
-	class StaticObj_TerjeBookMedicine1: HouseNoDestruct
+	class StaticObj_TerjeBookMedicine1: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_medicine1_co.paa"};
 	};
-	class StaticObj_TerjeBookMedicine2: HouseNoDestruct
+	class StaticObj_TerjeBookMedicine2: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_medicine2_co.paa"};
 	};
-	class StaticObj_TerjeBookMedicine3: HouseNoDestruct
+	class StaticObj_TerjeBookMedicine3: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_medicine3_co.paa"};
 	};
-	class StaticObj_TerjeBookMedicine4: HouseNoDestruct
+	class StaticObj_TerjeBookMedicine4: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_medicine4_co.paa"};
 	};
-	class StaticObj_TerjeBookMedicine5: HouseNoDestruct
+	class StaticObj_TerjeBookMedicine5: StaticObj_TerjeBook
 	{
 		scope=1;
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
 		hiddenSelectionsTextures[]={"TerjeMedicine\Books\data\book_medicine5_co.paa"};
 	};
 };
