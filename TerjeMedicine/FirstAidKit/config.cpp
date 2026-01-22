@@ -25,8 +25,8 @@ class CfgVehicles
 		itemSize[]={3,3};
 		itemsCargoSize[]={6,6};
 		allowOwnedCargoManipulation=1;
-		repairableWithKits[] = {2};
-		repairCosts[] = {25.0};
+		repairableWithKits[]={2};
+		repairCosts[]={25.0};
 	};
 
 	class TerjeFirstAidKitAdvancedBase: Container_Base
@@ -59,20 +59,20 @@ class CfgVehicles
 		absorbency=0.0;
 		itemSize[]={4,4};
 		varCleannessInit=1;
-		repairableWithKits[] = {2};
-		repairCosts[] = {35.0};
-		hiddenSelections[] = {"zbytek"};
-		inventorySlot[] = {"Belt_Back"};
-		vehicleClass = "Clothing";
-		itemInfo[] = {"Clothing","Belt"};
+		repairableWithKits[]={2};
+		repairCosts[]={35.0};
+		hiddenSelections[]={"zbytek"};
+		inventorySlot[]={"Belt_Back"};
+		vehicleClass="Clothing";
+		itemInfo[]={"Clothing","Belt"};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat.rvmat"}},{0.7,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat.rvmat"}},{0.5,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_damage.rvmat"}},{0.3,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_damage.rvmat"}},{0.0,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_destruct.rvmat"}}};
+					hitpoints=100;
+					healthLevels[]={{1.0,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat.rvmat"}},{0.7,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat.rvmat"}},{0.5,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_damage.rvmat"}},{0.3,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_damage.rvmat"}},{0.0,{"TerjeMedicine\FirstAidKit\afak\data\afak_mat_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -96,22 +96,22 @@ class CfgVehicles
 	class TerjeFirstAidKitAdvance_Black: TerjeFirstAidKitAdvancedBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_co.paa"};
 	};
 	class TerjeFirstAidKitAdvance_Brown: TerjeFirstAidKitAdvancedBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_2_co.paa"};
 	};
 	class TerjeFirstAidKitAdvance_Green: TerjeFirstAidKitAdvancedBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_3_co.paa"};
 	};
 	class TerjeFirstAidKitAdvance_Camo: TerjeFirstAidKitAdvancedBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_4_co.paa"};
 	};
 	
 	class TerjeFirstAidKitIndividualBase: Container_Base
@@ -142,10 +142,10 @@ class CfgVehicles
 		absorbency=0.0;
 		itemSize[]={3,3};
 		varCleannessInit=1;
-		repairableWithKits[] = {2};
-		repairCosts[] = {25.0};
-		hiddenSelections[] = {"zbytek"};
-		vehicleClass = "Clothing";
+		repairableWithKits[]={2};
+		repairCosts[]={25.0};
+		hiddenSelections[]={"zbytek"};
+		vehicleClass="Clothing";
 		inventorySlot[]=
 		{
 			"VestHolster",
@@ -162,8 +162,15 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat.rvmat"}},{0.7,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat.rvmat"}},{0.5,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_damage.rvmat"}},{0.3,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_damage.rvmat"}},{0.0,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_destruct.rvmat"}}};
+					hitpoints=100;
+					healthLevels[]=
+					{
+						{1.0,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat.rvmat"}},
+						{0.7,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat.rvmat"}},
+						{0.5,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\FirstAidKit\ifak\data\ifak_mat_destruct.rvmat"}}
+					};
 				};
 			};
 		};
@@ -188,22 +195,22 @@ class CfgVehicles
 	class TerjeFirstAidKitIndividual_Black: TerjeFirstAidKitIndividualBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_co.paa"};
 	};
 	class TerjeFirstAidKitIndividual_Brown: TerjeFirstAidKitIndividualBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_2_co.paa"};
 	};
 	class TerjeFirstAidKitIndividual_Green: TerjeFirstAidKitIndividualBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_3_co.paa"};
 	};
 	class TerjeFirstAidKitIndividual_Camo: TerjeFirstAidKitIndividualBase
 	{
 		scope=2;
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_4_co.paa"};
 	};
 
 	class TerjeFirstAidKitMedium: Container_Base
@@ -220,16 +227,23 @@ class CfgVehicles
 		randomQuantity=2;
 		canBeDigged=0;
 		isMeleeWeapon=1;
-		repairableWithKits[] = {2};
-		repairCosts[] = {30.0};
+		repairableWithKits[]={2};
+		repairCosts[]={30.0};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat.rvmat"}},{0.7,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat.rvmat"}},{0.5,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_damage.rvmat"}},{0.3,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_damage.rvmat"}},{0.0,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_destruct.rvmat"}}};
+					hitpoints=100;
+					healthLevels[]=
+					{
+						{1.0,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat.rvmat"}},
+						{0.7,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat.rvmat"}},
+						{0.5,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\FirstAidKit\mfak\data\mfak_mat_destruct.rvmat"}}
+					};
 				};
 			};
 		};
@@ -265,16 +279,23 @@ class CfgVehicles
 		randomQuantity=2;
 		canBeDigged=1;
 		isMeleeWeapon=1;
-		repairableWithKits[] = {8};
-		repairCosts[] = {30.0};
+		repairableWithKits[]={8};
+		repairCosts[]={30.0};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat.rvmat"}},{0.7,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat.rvmat"}},{0.5,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_damage.rvmat"}},{0.3,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_damage.rvmat"}},{0.0,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_destruct.rvmat"}}};
+					hitpoints=100;
+					healthLevels[]=
+					{
+						{1.0,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat.rvmat"}},
+						{0.7,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat.rvmat"}},
+						{0.5,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\FirstAidKit\lfak\data\lfak_mat_destruct.rvmat"}}
+					};
 				};
 			};
 		};
@@ -297,71 +318,64 @@ class CfgVehicles
 	};
 
 	class HouseNoDestruct;
-
-	class StaticObj_TerjeAFAK_Black: HouseNoDestruct
+	class StaticObj_TerjeAFAK: HouseNoDestruct
 	{
-		scope=1;
 		model="TerjeMedicine\FirstAidKit\afak\afak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_co.paa"};
+		hiddenSelections[]={"zbytek"};
 	};
-	class StaticObj_TerjeAFAK_Brown: HouseNoDestruct
+	class StaticObj_TerjeAFAK_Black: StaticObj_TerjeAFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\afak\afak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_co.paa"};
 	};
-	class StaticObj_TerjeAFAK_Green: HouseNoDestruct
+	class StaticObj_TerjeAFAK_Brown: StaticObj_TerjeAFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\afak\afak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_2_co.paa"};
 	};
-	class StaticObj_TerjeAFAK_Camo: HouseNoDestruct
+	class StaticObj_TerjeAFAK_Green: StaticObj_TerjeAFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\afak\afak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\afak\data\afak_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_3_co.paa"};
+	};
+	class StaticObj_TerjeAFAK_Camo: StaticObj_TerjeAFAK
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\afak\data\afak_4_co.paa"};
 	};
 	
-	class StaticObj_TerjeIFAK_Black: HouseNoDestruct
+	class StaticObj_TerjeIFAK: HouseNoDestruct
+	{
+		model="TerjeMedicine\FirstAidKit\ifak\ifak.p3d";
+		hiddenSelections[]={"zbytek"};
+	};
+	class StaticObj_TerjeIFAK_Black: StaticObj_TerjeIFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\ifak\ifak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_co.paa"};
 	};
-	class StaticObj_TerjeIFAK_Brown: HouseNoDestruct
+	class StaticObj_TerjeIFAK_Brown: StaticObj_TerjeIFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\ifak\ifak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_2_co.paa"};
 	};
-	class StaticObj_TerjeIFAK_Green: HouseNoDestruct
+	class StaticObj_TerjeIFAK_Green: StaticObj_TerjeIFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\ifak\ifak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_3_co.paa"};
 	};
-	class StaticObj_TerjeIFAK_Camo: HouseNoDestruct
+	class StaticObj_TerjeIFAK_Camo: StaticObj_TerjeIFAK
 	{
 		scope=1;
-		model="TerjeMedicine\FirstAidKit\ifak\ifak.p3d";
-		hiddenSelections[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"TerjeMedicine\FirstAidKit\ifak\data\ifak_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\FirstAidKit\ifak\data\ifak_4_co.paa"};
 	};
-
+	
 	class StaticObj_TerjeMFAK: HouseNoDestruct
 	{
 		scope=1;
 		model="TerjeMedicine\FirstAidKit\mfak\mfak.p3d";
 	};
-
+	
 	class StaticObj_TerjeLFAK: HouseNoDestruct
 	{
 		scope=1;
