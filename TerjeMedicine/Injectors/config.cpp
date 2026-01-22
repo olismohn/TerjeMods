@@ -15,7 +15,6 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	
 	class TerjeInjectorBase : Inventory_Base
 	{
 		descriptionShort="#STR_TERJEMED_INJECTOR_DESC";
@@ -239,24 +238,16 @@ class CfgVehicles
 	};
 
 	class HouseNoDestruct;
-	class StaticObj_TerjeInjector: HouseNoDestruct
-	{
-		model="dz\gear\medical\morphine.p3d";
-		hiddenSelections[]={"zbytek"};
-	};
-
 	class StaticObj_TerjeEpinephrine: HouseNoDestruct
 	{
 		scope=1;
 		model="dz\gear\medical\Epinephrine.p3d";
 	};
-	
 	class StaticObj_TerjeMorphine: HouseNoDestruct
 	{
 		scope=1;
 		model="dz\gear\medical\morphine.p3d";
 	};
-	
 	class StaticObj_AntiChemInjector: HouseNoDestruct
 	{
 		scope=1;
@@ -265,78 +256,71 @@ class CfgVehicles
 		hiddenSelectionsTextures[]={"dz\gear\medical\data\antidote_co.paa"};
 	};
 	
+	class StaticObj_TerjeInjector: HouseNoDestruct
+	{
+		model="dz\gear\medical\morphine.p3d";
+		hiddenSelections[]={"zbytek"};
+	};
 	class StaticObj_TerjeInjectorZivirol : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_purple_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorAmoxiclav : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_blue_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorNeirox : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_agua_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorErythropoietin : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_darkred_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorNovichek : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_black_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorPromidol: StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_viogreen_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorTopoizomeraza: StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_pinkred_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorErytromixelin: StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_orangebrown_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorStomaproxidal: StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_dirtyviolete_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorRabinucoline: StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_celugreen_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorAmfitalicyne : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_bluered_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorReanimatal : StaticObj_TerjeInjector
 	{
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_infistar_co.paa"};
 	};
-	
 	class StaticObj_TerjeInjectorPropital : StaticObj_TerjeInjector
 	{
 		scope=1;
