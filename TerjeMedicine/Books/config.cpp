@@ -137,12 +137,7 @@ class CfgVehicles
 		terjeSkillExpGain=6000;
 	};
 
-	class HouseNoDestruct;
-	class StaticObj_TerjeBook: HouseNoDestruct
-	{
-		model="DZ\gear\books\Book_kniga.p3d";
-		hiddenSelections[]={"camoGround"};
-	};
+	class StaticObj_TerjeBook;
 	class StaticObj_TerjeBookImmunity1: StaticObj_TerjeBook
 	{
 		scope=1;

@@ -75,6 +75,11 @@ class CfgVehicles
 	};
 	
 	class HouseNoDestruct;
+	class StaticObj_TerjeBook: HouseNoDestruct
+	{
+		model="DZ\gear\books\Book_kniga.p3d";
+		hiddenSelections[]={"camoGround"};
+	};
 	class TerjeSoundEmitter : HouseNoDestruct { };
 	class TerjeScriptableArea : HouseNoDestruct
 	{
