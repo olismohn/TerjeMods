@@ -1,30 +1,30 @@
 modded class TerjeConsumableEffects
 {
-	string colorRed = "<color rgba='198,59,64,255'>";
-	string colorYellow = "<color rgba='255,215,0,255'>";
-	string colorGreen = "<color rgba='97,215,124,255'>";
-	string colorEnd = "</color>";
-	string nextLine = "<br/>";
+	const string COLOR_RED = "<color rgba='198,59,64,255'>";
+	const string COLOR_YELLOW = "<color rgba='255,215,0,255'>";
+	const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
+	const string COLOR_END = "</color>";
+	const string NEXT_LINE = "<br/>";
 	
-	string TimeValue(float value)
+	private string TimeValue(float value)
 	{
-		return colorEnd + "(" + (int)(value) + "sec)" + nextLine;
+		return COLOR_END + "(" + (int)(value) + "sec)" + NEXT_LINE;
 	}
-	string LevelValue(float value)
+	private string LevelValue(float value)
 	{
-		return colorEnd + "(" + (int)(value) + "lvl)" + nextLine;
+		return COLOR_END + "(" + (int)(value) + "lvl)" + NEXT_LINE;
 	}
-	string NoValue()
+	private string NoValue()
 	{
-		return colorEnd + nextLine;
+		return COLOR_END + NEXT_LINE;
 	}
-	string TimeIncreaseValue(float value)
+	private string TimeIncreaseValue(float value)
 	{
-		return colorEnd + "(+" + (int)(value) + "sec)" + nextLine;
+		return COLOR_END + "(+" + (int)(value) + "sec)" + NEXT_LINE;
 	}
-	string PercentIncreaseValue(float value)
+	private string PercentIncreaseValue(float value)
 	{
-		return "+" + (int)(value * 100) + "%" + colorEnd + nextLine;
+		return "+" + (int)(value * 100) + "%" + COLOR_END + NEXT_LINE;
 	}
 	
 	
@@ -452,117 +452,117 @@ modded class TerjeConsumableEffects
 		float overdosedIncrement = GetTerjeGameConfig().ConfigGetFloat( classname + " overdosedIncrement" );
 		if (overdosedIncrement > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_OVERDOSE " + colorRed + PercentIncreaseValue(overdosedIncrement);
+			result = result + "#STR_TERJEMED_EFFECT_OVERDOSE " + COLOR_RED + PercentIncreaseValue(overdosedIncrement);
 		}
 		
 		float biohazardIncrement = GetTerjeGameConfig().ConfigGetFloat( classname + " biohazardIncrement" );
 		if (biohazardIncrement > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_BIOHAZARD " + colorRed + PercentIncreaseValue(biohazardIncrement);
+			result = result + "#STR_TERJEMED_EFFECT_BIOHAZARD " + COLOR_RED + PercentIncreaseValue(biohazardIncrement);
 		}
 		
 		int medPainkillerLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medPainkillerLevel" );
 		float medPainkillerTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medPainkillerTimeSec" );
 		if (medPainkillerLevel > 0 && medPainkillerTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_PAINKILLER " + colorGreen + medPainkillerLevel + TimeValue(medPainkillerTimeSec);
+			result = result + "#STR_TERJEMED_EFFECT_PAINKILLER " + COLOR_GREEN + medPainkillerLevel + TimeValue(medPainkillerTimeSec);
 		}
 		
 		int medAntipoisonLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntipoisonLevel" );
 		float medAntipoisonTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntipoisonTimeSec" );
 		if (medAntipoisonLevel > 0 && medAntipoisonTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_ANTIPOISON " + colorGreen + medAntipoisonLevel + TimeValue(medAntipoisonTimeSec);
+			result = result + "#STR_TERJEMED_EFFECT_ANTIPOISON " + COLOR_GREEN + medAntipoisonLevel + TimeValue(medAntipoisonTimeSec);
 		}
 		
 		int medAntibiohazardLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntibiohazardLevel" );
 		float medAntibiohazardTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibiohazardTimeSec" );
 		if (medAntibiohazardLevel > 0 && medAntibiohazardTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_ANTIBIOHAZARD " + colorGreen + medAntibiohazardLevel + TimeValue(medAntibiohazardTimeSec);
+			result = result + "#STR_TERJEMED_EFFECT_ANTIBIOHAZARD " + COLOR_GREEN + medAntibiohazardLevel + TimeValue(medAntibiohazardTimeSec);
 		}
 		
 		int medAntibioticLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntibioticLevel" );
 		float medAntibioticsTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibioticsTimeSec" );
 		if (medAntibioticLevel > 0 && medAntibioticsTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_ANTIBIOTIC " + colorGreen + medAntibioticLevel + TimeValue(medAntibioticsTimeSec);			
+			result = result + "#STR_TERJEMED_EFFECT_ANTIBIOTIC " + COLOR_GREEN + medAntibioticLevel + TimeValue(medAntibioticsTimeSec);			
 		}
 		
 		int medRabiesAntibioticLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medRabiesAntibioticLevel" );
 		float medRabiesAntibioticsTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medRabiesAntibioticTimeSec" );
 		if (medRabiesAntibioticLevel > 0 && medRabiesAntibioticsTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_RABIESCURE " + colorGreen + medRabiesAntibioticLevel + TimeValue(medRabiesAntibioticsTimeSec);			
+			result = result + "#STR_TERJEMED_EFFECT_RABIESCURE " + COLOR_GREEN + medRabiesAntibioticLevel + TimeValue(medRabiesAntibioticsTimeSec);			
 		}
 		
 		float medZAntidotTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medZAntidotTimeSec" );
 		if (medZAntidotTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_ZANTIDOT " + TimeValue(medZAntidotTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_ZANTIDOT " + TimeValue(medZAntidotTimeSec);
 		}
 		
 		float medAntisepsis = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntisepsisTimeSec" );
 		if (medAntisepsis > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_ANTISEPSIS " + TimeValue(medAntisepsis);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_ANTISEPSIS " + TimeValue(medAntisepsis);
 		}
 		
 		float medConcussionHealTime = GetTerjeGameConfig().ConfigGetFloat( classname + " medConcussionHealTimeSec" );
 		if (medConcussionHealTime > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_CONTUSIONCURE " + TimeValue(medConcussionHealTime);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_CONTUSIONCURE " + TimeValue(medConcussionHealTime);
 		}
 		
 		float medBloodHemostaticValue = GetTerjeGameConfig().ConfigGetInt( classname + " medBloodHemostaticValue" );
 		float medHemostaticTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medBloodHemostaticTimeSec" );
 		if (medBloodHemostaticValue > 0 && medHemostaticTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_HEMOSTATIC " + TimeValue(medHemostaticTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_HEMOSTATIC " + TimeValue(medHemostaticTimeSec);
 		}
 		
 		float medBloodRegenValue = GetTerjeGameConfig().ConfigGetInt( classname + " medBloodRegenValue" );
 		float medRegenTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medBloodRegenTimeSec" );
 		if (medBloodRegenValue > 0 && medRegenTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_BLOODREGEN " + TimeValue(medRegenTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_BLOODREGEN " + TimeValue(medRegenTimeSec);
 		}
 		
 		float medHematomaHealTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " medHematomaHealTimeSec" );
 		if (medHematomaHealTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_HEMATOMA " + TimeIncreaseValue(medHematomaHealTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_HEMATOMA " + TimeIncreaseValue(medHematomaHealTimeSec);
 		}
 		
 		float medAdrenalinTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAdrenalinTimeSec" );
 		if (medAdrenalinTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_ADRENALIN " + TimeValue(medAdrenalinTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_ADRENALIN " + TimeValue(medAdrenalinTimeSec);
 		}
 		
 		int medAntidepLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntidepresantLevel" );
 		float medAntidepTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntidepresantTimer" );
 		if (medAntidepLevel > 0 && medAntidepTimeSec > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_ANTIDEPRESANT " + colorGreen + medAntidepLevel + TimeValue(medAntidepTimeSec);			
+			result = result + "#STR_TERJEMED_EFFECT_ANTIDEPRESANT " + COLOR_GREEN + medAntidepLevel + TimeValue(medAntidepTimeSec);			
 		}
 		
 		float medInfluenzaVacineTime = GetTerjeGameConfig().ConfigGetFloat( classname + " medInfluenzaVacineTime" );
 		if (medInfluenzaVacineTime > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_INFVACINE " + TimeValue(medInfluenzaVacineTime);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_INFVACINE " + TimeValue(medInfluenzaVacineTime);
 		}
 		
 		float medZVirusVacineTime = GetTerjeGameConfig().ConfigGetFloat( classname + " medZVirusVacineTime" );
 		if (medZVirusVacineTime > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_ZEDVACINE " + TimeValue(medZVirusVacineTime);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_ZEDVACINE " + TimeValue(medZVirusVacineTime);
 		}
 		
 		float rabiesVacineTime = GetTerjeGameConfig().ConfigGetFloat( classname + " medRabiesVacineTime" );
 		if (rabiesVacineTime > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_RABIESVACCINE " + TimeValue(rabiesVacineTime);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_RABIESVACCINE " + TimeValue(rabiesVacineTime);
 		}
 		
 		float medImmunityGainForce = GetTerjeGameConfig().ConfigGetFloat( classname + " medImmunityGainForce" );
@@ -570,86 +570,86 @@ modded class TerjeConsumableEffects
 		TerjeLog_Info("medImmunityGainForce=" + medImmunityGainForce + "; medImmunityGainTimeSec=" + medImmunityGainTimeSec);
 		if (medImmunityGainForce > 0 && medImmunityGainTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_IMMUNGAIN " + TimeValue(medImmunityGainTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_IMMUNGAIN " + TimeValue(medImmunityGainTimeSec);
 		}
 		
 		float medHealthgenTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medHealthgainTimeSec" );
 		if (medHealthgenTimeSec > 0)
 		{
-			result = result + colorYellow + "#STR_TERJEMED_EFFECT_HEALTHREGEN " + TimeValue(medHealthgenTimeSec);
+			result = result + COLOR_YELLOW + "#STR_TERJEMED_EFFECT_HEALTHREGEN " + TimeValue(medHealthgenTimeSec);
 		}
 		
 		// Negative effects
 		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medHematomasIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_HEMATOMA " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_HEMATOMA " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussionLight");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_CONTLIGHT " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_CONTLIGHT " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussionHeavy");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_CONTHEAVY " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_CONTHEAVY " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medFoodPoisonIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_FOODPOISON " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_FOODPOISON " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medChemicalPoisonIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_CHEMPOISON " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_CHEMPOISON " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medInfuenzaInfectionIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_INFLUENZA " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_INFLUENZA " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medZombieVirusIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_ZOMBIE " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_ZOMBIE " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medSepsisInfectionIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_SEPSIS " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_SEPSIS " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medRabiesVirusIncrement");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_RABIES " + NoValue();
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_RABIES " + NoValue();
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medPsiDamageTime");
 		if (medDmgValue > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_DMG_PSI " + colorRed + TimeValue(medDmgValue);	
+			result = result + "#STR_TERJEMED_EFFECT_DMG_PSI " + COLOR_RED + TimeValue(medDmgValue);	
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medSleepDamageTime");
 		if (medDmgValue > 0)
 		{
-			result = result + "#STR_TERJEMED_EFFECT_DMG_SLEEP " + colorRed + TimeValue(medDmgValue);	
+			result = result + "#STR_TERJEMED_EFFECT_DMG_SLEEP " + COLOR_RED + TimeValue(medDmgValue);	
 		}
 		
 		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medPainSet");
 		if (medDmgValue > 0)
 		{
-			result = result + colorRed + "#STR_TERJEMED_EFFECT_DMG_PAIN " + LevelValue(medDmgValue);
+			result = result + COLOR_RED + "#STR_TERJEMED_EFFECT_DMG_PAIN " + LevelValue(medDmgValue);
 		}
 		
 		return result;
