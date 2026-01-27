@@ -40,21 +40,15 @@ modded class PlayerBase
 	
 	void OnTerjePlayerLoaded() 
 	{
-		// Load persisted blood type from terje profile
-		if (GetGame() && GetGame().IsDedicatedServer())
-		{
-			if (GetTerjeSettingBool(TerjeSettingsCollection.CORE_PERSIST_BLOOD_TYPE) && GetTerjeProfile() != null)
-			{
-				int bloodType = GetTerjeProfile().GetBloodType();
-				if (bloodType != -1)
-				{
-					SetBloodType(bloodType);
-				}
-			}
-		}
+		//Calling the function to load blood type on player load
+		TerjePlayerLoadBloodType()
 	}
 	
-	void OnTerjePlayerRespawned() {}
+	void OnTerjePlayerRespawned() 
+	{
+		//Calling the function to load blood type on respawn
+		TerjePlayerLoadBloodType()
+	}
 	
 	void OnTerjeProfileFirstCreation() {}
 	
@@ -69,6 +63,22 @@ modded class PlayerBase
 		modifiers.Insert(new TerjePlayerModifierLifetime());
 	}
 	
+	// Load persisted blood type from terje profile
+	void TerjePlayerLoadBloodType()
+	{
+		if (GetGame() && GetGame().IsDedicatedServer())
+		{
+			if (GetTerjeSettingBool(TerjeSettingsCollection.CORE_PERSIST_BLOOD_TYPE) && GetTerjeProfile() != null)
+			{
+				int bloodType = GetTerjeProfile().GetBloodType();
+				if (bloodType != -1)
+				{
+					GetStatBloodType().Set(bloodType);
+				}
+			}
+		}
+	}
+
 	ref TerjePlayerProfile CreateTerjeProfile()
 	{
 		if (GetGame() && IsAlive() && GetIdentity() && (GetGame().IsDedicatedServer() || IsTerjeLocalControlledPlayer()))
@@ -295,7 +305,7 @@ modded class PlayerBase
 		{
 			if (GetTerjeSettingBool(TerjeSettingsCollection.CORE_PERSIST_BLOOD_TYPE) && GetTerjeProfile() != null)
 			{
-				GetTerjeProfile().SetBloodType(GetBloodType());
+				GetTerjeProfile().SetBloodType(GetStatBloodType().Get());
 			}
 		}
 	}
