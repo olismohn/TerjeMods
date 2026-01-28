@@ -21,7 +21,7 @@ class CfgVehicles
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
 		debug_ItemCategory=7;
-		rotationFlags=17;
+		rotationFlags=1;
 		canBeSplit=1;
 		varQuantityInit=10;
 		varQuantityMin=0;
@@ -37,7 +37,7 @@ class CfgVehicles
 		absorbency=0;
 		medicalItem=1;
 		medicalPillsCategory=1;
-		hiddenSelections[]={"zbytek"};
+		hiddenSelections[]={"tablets"};
 		medSkillExpAddToSelf=10;
 		medPainkillerMaxTimeSec=1800;
 		medAntipoisonMaxTimeSec=1800;
@@ -84,10 +84,73 @@ class CfgVehicles
 				};
 			};
 		};
+		class AnimationSources
+		{
+			class Tablet_01
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_02
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_03
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_04
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_05
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_06
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_07
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_08
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_09
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_10
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+		};
 	};
 	class TerjePills_Capsule: TerjePillsBase
 	{
-		model="TerjeMedicine\Pills\capsule\capsule.p3d";
+		model="TerjeMedicine\Pills\capsule.p3d";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -97,11 +160,11 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\capsule_destruct.rvmat"}}
 					};
 				};
 			};
@@ -109,7 +172,7 @@ class CfgVehicles
 	};
 	class TerjePills_Oval: TerjePillsBase
 	{
-		model="TerjeMedicine\Pills\oval\oval.p3d";
+		model="TerjeMedicine\Pills\oval.p3d";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -119,11 +182,11 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\oval\data\oval_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\oval\data\oval_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\oval\data\oval_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\oval\data\oval_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\oval\data\oval_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\oval.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\oval.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\oval_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\oval_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\oval_destruct.rvmat"}}
 					};
 				};
 			};
@@ -131,7 +194,7 @@ class CfgVehicles
 	};
 	class TerjePills_Circle: TerjePillsBase
 	{
-		model="TerjeMedicine\Pills\circle\circle.p3d";
+		model="TerjeMedicine\Pills\circle.p3d";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -141,11 +204,11 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\circle\data\circle_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\circle\data\circle_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\circle\data\circle_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\circle\data\circle_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\circle\data\circle_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\circle.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\circle.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\circle_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\circle_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\circle_destruct.rvmat"}}
 					};
 				};
 			};
@@ -155,7 +218,8 @@ class CfgVehicles
 	class CharcoalTablets: Edible_Base
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
-		model="TerjeMedicine\Pills\oval\oval.p3d";
+		model="TerjeMedicine\Pills\oval.p3d";
+		rotationFlags=1;
 		varQuantityInit=10;
 		varQuantityMin=0;
 		varQuantityMax=10;
@@ -165,8 +229,8 @@ class CfgVehicles
 		medicalItem=1;
 		medSkillExpAddToSelf=5;
 		medicalPillsCategory=1;
-		hiddenSelections[]={"zbytek"};
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_11_co.paa"};
+		hiddenSelections[]={"tablets"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_11_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -176,19 +240,83 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\oval\data\oval_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\oval\data\oval_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\oval\data\oval_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\oval\data\oval_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\oval\data\oval_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\oval.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\oval.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\oval_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\oval_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\oval_destruct.rvmat"}}
 					};
 				};
+			};
+		};
+		class AnimationSources
+		{
+			class Tablet_01
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_02
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_03
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_04
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_05
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_06
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_07
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_08
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_09
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_10
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
 			};
 		};
 	};
 	class ChelatingTablets: Edible_Base
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
+		rotationFlags=1;
 		medAntipoisonLevel=2;
 		medAntipoisonTimeSec=600;
 		overdosedIncrement=0.6;
@@ -199,7 +327,8 @@ class CfgVehicles
 	class PainkillerTablets: Edible_Base
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
-		model="TerjeMedicine\Pills\capsule\capsule.p3d";
+		model="TerjeMedicine\Pills\capsule.p3d";
+		rotationFlags=1;
 		varQuantityInit=10;
 		varQuantityMin=0;
 		varQuantityMax=10;
@@ -209,8 +338,8 @@ class CfgVehicles
 		overdosedIncrement=0.2;
 		medicalItem=1;
 		medicalPillsCategory=1;
-		hiddenSelections[]={"zbytek"};
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_2_co.paa"};
+		hiddenSelections[]={"tablets"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_2_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -220,20 +349,84 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\capsule_destruct.rvmat"}}
 					};
 				};
+			};
+		};
+		class AnimationSources
+		{
+			class Tablet_01
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_02
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_03
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_04
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_05
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_06
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_07
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_08
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_09
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_10
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
 			};
 		};
 	};
 	class TetracyclineAntibiotics: Edible_Base
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
-		model="TerjeMedicine\Pills\capsule\capsule.p3d";
+		model="TerjeMedicine\Pills\capsule.p3d";
+		rotationFlags=1;
 		varQuantityInit=10;
 		varQuantityMin=0;
 		varQuantityMax=10;
@@ -243,8 +436,8 @@ class CfgVehicles
 		overdosedIncrement=0.45;
 		medicalItem=1;
 		medicalPillsCategory=1;
-		hiddenSelections[]={"zbytek"};
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_3_co.paa"};
+		hiddenSelections[]={"tablets"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_3_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -254,13 +447,76 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-						{1.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.7,{"TerjeMedicine\Pills\capsule\data\capsule_mat.rvmat"}},
-						{0.5,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.3,{"TerjeMedicine\Pills\capsule\data\capsule_mat_damage.rvmat"}},
-						{0.0,{"TerjeMedicine\Pills\capsule\data\capsule_mat_destruct.rvmat"}}
+						{1.0,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.7,{"TerjeMedicine\Pills\data\capsule.rvmat"}},
+						{0.5,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.3,{"TerjeMedicine\Pills\data\capsule_damage.rvmat"}},
+						{0.0,{"TerjeMedicine\Pills\data\capsule_destruct.rvmat"}}
 					};
 				};
+			};
+		};
+		class AnimationSources
+		{
+			class Tablet_01
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_02
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_03
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_04
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_05
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_06
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_07
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_08
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_09
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
+			};
+			class Tablet_10
+			{
+				source="user";
+				initPhase=0;
+				animPeriod=1;
 			};
 		};
 	};
@@ -272,7 +528,7 @@ class CfgVehicles
 		medBloodRegenValue=2.5;
 		medBloodRegenTimeSec=120;
 		overdosedIncrement=0.3;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_4_co.paa"};
 	};
 	class TerjePillsAdepress: TerjePills_Capsule
 	{
@@ -281,7 +537,7 @@ class CfgVehicles
 		medAntidepresantLevel=1;
 		medAntidepresantTimer=150;
 		overdosedIncrement=0.2;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_5_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_5_co.paa"};
 	};
 	class TerjePillsB190: TerjePills_Capsule
 	{
@@ -290,7 +546,7 @@ class CfgVehicles
 		medAntiradLevel=1;
 		medAntiradTimer=140;
 		overdosedIncrement=0.3;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_6_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_6_co.paa"};
 	};
 	
 	// ADVANCED PILLS
@@ -301,7 +557,7 @@ class CfgVehicles
 		medPainkillerLevel=1;
 		medPainkillerTimeSec=500;
 		overdosedIncrement=0.15;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_7_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_7_co.paa"};
 	};
 	class TerjePillsNimesulid: TerjePills_Oval
 	{
@@ -310,7 +566,7 @@ class CfgVehicles
 		medPainkillerLevel=1;
 		medPainkillerTimeSec=600;
 		overdosedIncrement=0.25;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_8_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_8_co.paa"};
 	};
 	class TerjePillsParacetamol: TerjePills_Oval
 	{
@@ -321,7 +577,7 @@ class CfgVehicles
 		overdosedIncrement=0.45;
 		medAntibioticLevel=1;
 		medAntibioticsTimeSec=120;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_10_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_10_co.paa"};
 	};
 	class TerjePillsIbuprofen: TerjePills_Capsule
 	{
@@ -332,7 +588,7 @@ class CfgVehicles
 		medAntibioticLevel=2;
 		medAntibioticsTimeSec=300;
 		overdosedIncrement=0.35;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_11_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_11_co.paa"};
 	};
 	class TerjePillsNurofen: TerjePills_Oval
 	{
@@ -343,7 +599,7 @@ class CfgVehicles
 		medAntibioticLevel=2;
 		medAntibioticsTimeSec=300;
 		overdosedIncrement=0.52;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_6_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_6_co.paa"};
 	};
 	class TerjePillsAmoxiclav: TerjePills_Oval
 	{
@@ -352,7 +608,7 @@ class CfgVehicles
 		medAntibioticLevel=2;
 		medAntibioticsTimeSec=1200;
 		overdosedIncrement=0.75;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_5_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_5_co.paa"};
 	};
 	class TerjePillsPiperacylin: TerjePills_Oval
 	{
@@ -361,7 +617,7 @@ class CfgVehicles
 		medAntibioticLevel=2;
 		medAntibioticsTimeSec=1100;
 		overdosedIncrement=0.45;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_4_co.paa"};
 	};
 	class TerjePillsAmibaktam: TerjePills_Oval
 	{
@@ -370,7 +626,7 @@ class CfgVehicles
 		medAntibioticLevel=1;
 		medAntibioticsTimeSec=60;
 		overdosedIncrement=0.05;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_3_co.paa"};
 	};
 	class TerjePillsPolisorb: TerjePills_Oval
 	{
@@ -379,7 +635,7 @@ class CfgVehicles
 		medAntipoisonLevel=1;
 		medAntipoisonTimeSec=300;
 		overdosedIncrement=0.05;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_2_co.paa"};
 	};
 	class TerjePillsMesalazin: TerjePills_Circle
 	{
@@ -388,7 +644,7 @@ class CfgVehicles
 		medAntipoisonLevel=2;
 		medAntipoisonTimeSec=600;
 		overdosedIncrement=0.35;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_1_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_1_co.paa"};
 	};
 	class TerjePillsFtalazol: TerjePills_Circle
 	{
@@ -397,7 +653,7 @@ class CfgVehicles
 		medAntipoisonLevel=1;
 		medAntipoisonTimeSec=1200;
 		overdosedIncrement=0.25;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_2_co.paa"};
 	};
 	class TerjePillsNoopept: TerjePills_Circle
 	{
@@ -407,7 +663,7 @@ class CfgVehicles
 		medPainkillerTimeSec=380;
 		medConcussionHealTimeSec=380;
 		overdosedIncrement=0.35;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_3_co.paa"};
 	};
 	class TerjePillsVikasol: TerjePills_Circle
 	{
@@ -416,7 +672,7 @@ class CfgVehicles
 		medBloodHemostaticValue=1;
 		medBloodHemostaticTimeSec=300;
 		overdosedIncrement=0.15;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_4_co.paa"};
 	};
 	class TerjePillsIrovit: TerjePills_Circle
 	{
@@ -425,7 +681,7 @@ class CfgVehicles
 		medBloodRegenValue=1;
 		medBloodRegenTimeSec=120;
 		overdosedIncrement=0.3;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_5_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_5_co.paa"};
 	};
 	class TerjePillsPotassiumIodide: TerjePills_Circle
 	{
@@ -434,7 +690,7 @@ class CfgVehicles
 		medAntiradLevel=1;
 		medAntiradTimer=60;
 		overdosedIncrement=0.2;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_6_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_6_co.paa"};
 	};
 	class TerjePillsHexacyanoferrate: TerjePills_Circle
 	{
@@ -443,7 +699,7 @@ class CfgVehicles
 		medAntiradLevel=1;
 		medAntiradTimer=120;
 		overdosedIncrement=0.3;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_7_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_7_co.paa"};
 	};
 	class TerjePillsMexamine: TerjePills_Circle
 	{
@@ -452,7 +708,7 @@ class CfgVehicles
 		medAntiradLevel=2;
 		medAntiradTimer=25;
 		overdosedIncrement=0.75;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_8_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_8_co.paa"};
 	};
 	class TerjePillsAgteminol: TerjePills_Circle
 	{
@@ -461,7 +717,7 @@ class CfgVehicles
 		medAntidepresantLevel=1;
 		medAntidepresantTimer=120;
 		overdosedIncrement=0.2;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_9_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_9_co.paa"};
 	};
 	class TerjePillsVenlafaxine: TerjePills_Circle
 	{
@@ -470,7 +726,7 @@ class CfgVehicles
 		medAntidepresantLevel=1;
 		medAntidepresantTimer=250;
 		overdosedIncrement=0.3;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_10_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_10_co.paa"};
 	};
 	class TerjePillsRombiopental: TerjePills_Capsule
 	{
@@ -479,7 +735,7 @@ class CfgVehicles
 		medAntibiohazardLevel=1;
 		medAntibiohazardTimeSec=30;
 		overdosedIncrement=0.15;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_7_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_7_co.paa"};
 	};
 	class TerjePillsPotassiumCyanide: TerjePills_Circle
 	{
@@ -487,7 +743,7 @@ class CfgVehicles
 		displayName="#STR_TERJEMED_CYANIDE";
 		medFoodPoisonIncrement=5;
 		overdosedIncrement=1.5;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_1_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_1_co.paa"};
 	};
 	class TerjePillsArsenic: TerjePills_Circle
 	{
@@ -495,7 +751,7 @@ class CfgVehicles
 		displayName="#STR_TERJEMED_ARSENIC";
 		medFoodPoisonIncrement=3.5;
 		overdosedIncrement=2.5;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\circle\data\circle_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_3_co.paa"};
 	};
 	class TerjePillsIversan: TerjePills_Oval
 	{
@@ -503,83 +759,83 @@ class CfgVehicles
 		displayName="#STR_TERJEMED_IVERSAN";
 		medFoodPoisonIncrement=2.2;
 		overdosedIncrement=0.5;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_4_co.paa"};
 	};
 
 	class HouseNoDestruct;
 	class StaticObj_TerjePills_capsule: HouseNoDestruct
 	{
-		model="TerjeMedicine\Pills\capsule\capsule.p3d";
+		model="TerjeMedicine\Pills\capsule.p3d";
 		hiddenSelections[]={"zbytek"};
 	};
 	class StaticObj_TerjePills_oval: HouseNoDestruct
 	{
-		model="TerjeMedicine\Pills\oval\oval.p3d";
+		model="TerjeMedicine\Pills\oval.p3d";
 		hiddenSelections[]={"zbytek"};
 	};
 	class StaticObj_TerjePills_circle: HouseNoDestruct
 	{
-		model="TerjeMedicine\Pills\circle\circle.p3d";
+		model="TerjeMedicine\Pills\circle.p3d";
 		hiddenSelections[]={"zbytek"};
 	};
 	class StaticObj_TerjePillsMagnesiumSulfate: StaticObj_TerjePills_capsule
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_4_co.paa"};
 	};
 	class StaticObj_TerjePillsAdepress: StaticObj_TerjePills_capsule
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_5_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_5_co.paa"};
 	};
 	class StaticObj_TerjePillsB190: StaticObj_TerjePills_capsule
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_6_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_6_co.paa"};
 	};
 	class StaticObj_TerjePillsAnalgin: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_7_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_7_co.paa"};
 	};
 	class StaticObj_TerjePillsNimesulid: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_8_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_8_co.paa"};
 	};
 	class StaticObj_TerjePillsParacetamol: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_10_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_10_co.paa"};
 	};
 	class StaticObj_TerjePillsIbuprofen: StaticObj_TerjePills_capsule
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\capsule\data\capsule_11_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_11_co.paa"};
 	};
 	class StaticObj_TerjePillsNurofen: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_6_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_6_co.paa"};
 	};
 	class StaticObj_TerjePillsAmoxiclav: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_5_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_5_co.paa"};
 	};
 	class StaticObj_TerjePillsPiperacylin: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_4_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_4_co.paa"};
 	};
 	class StaticObj_TerjePillsAmibaktam: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_3_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_3_co.paa"};
 	};
 	class StaticObj_TerjePillsPolisorb: StaticObj_TerjePills_oval
 	{
 		scope=1;
-		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\oval\data\oval_2_co.paa"};
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_2_co.paa"};
 	};
 };
