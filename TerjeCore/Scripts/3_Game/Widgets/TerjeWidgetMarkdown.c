@@ -47,10 +47,9 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 			
 			if (insideCode)
 			{
-				TerjeWidgetMarkdownRichText codeWidget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownCode));
+				TerjeWidgetText codeWidget = TerjeWidgetText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownCode));
 				codeWidget.SetWidthImmediately(width, true);
 				codeWidget.SetTextImmediately(line);
-				codeWidget.FitToContent(width);
 				continue;
 			}
 			
@@ -83,7 +82,6 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 						TerjeWidgetMarkdownLink linkWidget = TerjeWidgetMarkdownLink.Cast(CreateTerjeWidget(TerjeWidgetMarkdownLink));
 						linkWidget.SetWidthImmediately(width, true);
 						linkWidget.SetLink(linkData, linkText);
-						linkWidget.FitToContent(width);
 						continue;
 					}
 				}
@@ -114,10 +112,9 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 				spacerWidget.SetWidthImmediately(width, true);
 				spacerWidget.SetSpacingImmediately(8);
 				
-				TerjeWidgetMarkdownRichText header1Widget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader1));
+				TerjeWidgetText header1Widget = TerjeWidgetText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader1));
 				header1Widget.SetWidthImmediately(width, true);
 				header1Widget.SetTextImmediately(ProcessTextLine(line.Substring(2, line.Length() - 2)));
-				header1Widget.FitToContent(width);
 				
 				spacerWidget = TerjeWidgetSpacerH.Cast(CreateTerjeWidget(TerjeWidgetSpacerH));
 				spacerWidget.SetWidthImmediately(width, true);
@@ -131,10 +128,9 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 				spacerWidget.SetWidthImmediately(width, true);
 				spacerWidget.SetSpacingImmediately(8);
 				
-				TerjeWidgetMarkdownRichText header2Widget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader2));
+				TerjeWidgetText header2Widget = TerjeWidgetText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader2));
 				header2Widget.SetWidthImmediately(width, true);
 				header2Widget.SetTextImmediately(ProcessTextLine(line.Substring(3, line.Length() - 3)));
-				header2Widget.FitToContent(width);
 				
 				spacerWidget = TerjeWidgetSpacerH.Cast(CreateTerjeWidget(TerjeWidgetSpacerH));
 				spacerWidget.SetWidthImmediately(width, true);
@@ -148,19 +144,17 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 				spacerWidget.SetWidthImmediately(width, true);
 				spacerWidget.SetSpacingImmediately(8);
 				
-				TerjeWidgetMarkdownRichText header3Widget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader3));
+				TerjeWidgetText header3Widget = TerjeWidgetText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownHeader3));
 				header3Widget.SetWidthImmediately(width, true);
 				header3Widget.SetTextImmediately(ProcessTextLine(line.Substring(4, line.Length() - 4)));
-				header3Widget.FitToContent(width);
 				continue;
 			}
 			
 			if (TerjeStringHelper.StartsWith(line, "> ") && line.Length() > 2)
 			{
-				TerjeWidgetMarkdownRichText blockWidget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownBlock));
+				TerjeWidgetMarkdownBlock blockWidget = TerjeWidgetMarkdownBlock.Cast(CreateTerjeWidget(TerjeWidgetMarkdownBlock));
 				blockWidget.SetWidthImmediately(width, true);
 				blockWidget.SetTextImmediately(ProcessTextLine(line.Substring(2, line.Length() - 2)));
-				blockWidget.FitToContent(width);
 				continue;
 			}
 			
@@ -181,11 +175,10 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 				
 				line = listOffset + listMarker + line.Substring(2, line.Length() - 2);
 			}
-
-			TerjeWidgetMarkdownRichText textWidget = TerjeWidgetMarkdownRichText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownText));
+			
+			TerjeWidgetText textWidget = TerjeWidgetText.Cast(CreateTerjeWidget(TerjeWidgetMarkdownText));
 			textWidget.SetWidthImmediately(width, true);
 			textWidget.SetTextImmediately(ProcessTextLine(line));
-			textWidget.FitToContent(width);
 		}
 		
 		spacerWidget = TerjeWidgetSpacerH.Cast(CreateTerjeWidget(TerjeWidgetSpacerH));
@@ -235,20 +228,6 @@ class TerjeWidgetMarkdown : TerjeWidgetBase
 	}
 }
 
-class TerjeWidgetMarkdownRichText : TerjeWidgetText
-{
-	void FitToContent(float width)
-	{
-		Widget w = GetNativeWidget();
-		RichTextWidget rt = RichTextWidget.Cast(w);
-		if (!rt) return;
-
-		rt.Update();
-		float h = rt.GetContentHeight();
-		w.SetSize(width, h + 4.0);
-	}
-}
-
 class TerjeWidgetCommand_MarkdownSetContent : TerjeWidgetCommand
 {
 	float m_width;
@@ -261,7 +240,7 @@ class TerjeWidgetCommand_MarkdownSetContent : TerjeWidgetCommand
 	}
 }
 
-class TerjeWidgetMarkdownText : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownText : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -269,7 +248,7 @@ class TerjeWidgetMarkdownText : TerjeWidgetMarkdownRichText
 	}
 }
 
-class TerjeWidgetMarkdownHeader1 : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownHeader1 : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -277,7 +256,7 @@ class TerjeWidgetMarkdownHeader1 : TerjeWidgetMarkdownRichText
 	}
 }
 
-class TerjeWidgetMarkdownHeader2 : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownHeader2 : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -285,7 +264,7 @@ class TerjeWidgetMarkdownHeader2 : TerjeWidgetMarkdownRichText
 	}
 }
 
-class TerjeWidgetMarkdownHeader3 : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownHeader3 : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -301,7 +280,7 @@ class TerjeWidgetMarkdownLineBreak : TerjeWidgetBase
 	}
 }
 
-class TerjeWidgetMarkdownCode : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownCode : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -315,7 +294,7 @@ class TerjeWidgetMarkdownCode : TerjeWidgetMarkdownRichText
 	}
 }
 
-class TerjeWidgetMarkdownBlock : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownBlock : TerjeWidgetText
 {
 	override string GetNativeLayout()
 	{
@@ -329,7 +308,7 @@ class TerjeWidgetMarkdownBlock : TerjeWidgetMarkdownRichText
 	}
 }
 
-class TerjeWidgetMarkdownLink : TerjeWidgetMarkdownRichText
+class TerjeWidgetMarkdownLink : TerjeWidgetText
 {
 	string m_linkUrl;
 	
