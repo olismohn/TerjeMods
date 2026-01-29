@@ -847,4 +847,74 @@ class CfgVehicles
 		scope=1;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_2_co.paa"};
 	};
+	class StaticObj_TerjePillsMesalazin: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_1_co.paa"};
+	};
+	class StaticObj_TerjePillsFtalazol: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_2_co.paa"};
+	};
+	class StaticObj_TerjePillsNoopept: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_3_co.paa"};
+	};
+	class StaticObj_TerjePillsVikasol: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_4_co.paa"};
+	};
+	class StaticObj_TerjePillsIrovit: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_5_co.paa"};
+	};
+	class StaticObj_TerjePillsPotassiumIodide: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_6_co.paa"};
+	};
+	class StaticObj_TerjePillsHexacyanoferrate: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_7_co.paa"};
+	};
+	class StaticObj_TerjePillsMexamine: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_8_co.paa"};
+	};
+	class StaticObj_TerjePillsAgteminol: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_9_co.paa"};
+	};
+	class StaticObj_TerjePillsVenlafaxine: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_10_co.paa"};
+	};
+	class StaticObj_TerjePillsRombiopental: StaticObj_TerjePills_capsule
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_7_co.paa"};
+	};
+	class StaticObj_TerjePillsPotassiumCyanide: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_1_co.paa"};
+	};
+	class StaticObj_TerjePillsArsenic: StaticObj_TerjePills_circle
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_3_co.paa"};
+	};
+	class StaticObj_TerjePillsIversan: StaticObj_TerjePills_oval
+	{
+		scope=1;
+		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_4_co.paa"};
+	};
 };
