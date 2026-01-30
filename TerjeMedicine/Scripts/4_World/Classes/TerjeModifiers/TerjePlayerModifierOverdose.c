@@ -49,7 +49,6 @@ class TerjePlayerModifierOverdose : TerjePlayerModifierBase
 				}
 			}
 			
-			
 			if (overdoseValue > 3)
 			{
 				float overdoseCriticalDmgMultiplier = GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_OVERDOSE_CRITICAL_DMG_MULTIPLIER);
