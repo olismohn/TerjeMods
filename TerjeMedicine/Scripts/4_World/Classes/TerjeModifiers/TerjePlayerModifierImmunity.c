@@ -20,15 +20,18 @@ class TerjePlayerModifierImmunity : TerjePlayerModifierBase
 		{
 			immunity += GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INTIMM_GAIN_MOD) * gainForce * deltaTime * 0.001;
 			
-			m_skillExpGainTimer = m_skillExpGainTimer + deltaTime;
+			m_skillExpGainTimer += deltaTime;
 			if (m_skillExpGainTimer >= 60)
 			{
 				m_skillExpGainTimer = 0;
 				
-				int expGain = GetTerjeSettingInt(TerjeSettingsCollection.MEDICINE_IMMUNITY_VITAMINS_EXP_GAIN);
-				if (player.GetTerjeSkills() && (expGain > 0))
+				if (player.GetTerjeSkills())
 				{
-					player.GetTerjeSkills().AddSkillExperience("immunity", expGain);
+					int expGain = GetTerjeSettingInt(TerjeSettingsCollection.MEDICINE_IMMUNITY_VITAMINS_EXP_GAIN);
+					if (expGain > 0)
+					{
+						player.GetTerjeSkills().AddSkillExperience("immunity", expGain);
+					}
 				}
 			}
 			

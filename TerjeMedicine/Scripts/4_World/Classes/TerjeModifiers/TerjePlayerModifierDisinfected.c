@@ -11,7 +11,7 @@ class TerjePlayerModifierDisinfected : TerjePlayerModifierBase
 	override void OnServerFixedTick(PlayerBase player, float deltaTime)
 	{
 		super.OnServerFixedTick(player, deltaTime);
-				
+		
 		float m_disinfectedHands = player.GetTerjeStats().GetDisinfectedHands();
 		if (m_disinfectedHands > 0)
 		{
@@ -37,7 +37,7 @@ class TerjePlayerModifierDisinfected : TerjePlayerModifierBase
 				
 				if (gloves.IsDisinfected())
 				{
-					m_glovesUndisinfectedTimer = m_glovesUndisinfectedTimer - deltaTime;
+					m_glovesUndisinfectedTimer -= deltaTime;
 					if (m_glovesUndisinfectedTimer < 0)
 					{
 						m_glovesUndisinfectedTimer = 0;

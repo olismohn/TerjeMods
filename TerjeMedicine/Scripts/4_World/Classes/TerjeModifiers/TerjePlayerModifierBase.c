@@ -7,7 +7,7 @@ modded class TerjePlayerModifierBase
 			float immunityMod;
 			if (player.GetTerjeSkills().GetSkillModifierValue("immunity", "resdiseasesmod", immunityMod))
 			{
-				return Math.Clamp(immunityMod, 0.0, 1.0);
+				return Math.Clamp(immunityMod, 0, 1);
 			}
 			else
 			{

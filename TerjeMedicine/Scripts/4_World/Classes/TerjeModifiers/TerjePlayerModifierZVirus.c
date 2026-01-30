@@ -32,7 +32,7 @@ class TerjePlayerModifierZVirus : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 	
 		float zombieValue = player.GetTerjeStats().GetZVirusValue();
@@ -53,14 +53,14 @@ class TerjePlayerModifierZVirus : TerjePlayerModifierBase
 				
 				float immunityMod = Math.Clamp(1.0 - GetPlayerImmunity(player), 0.35, 1.0);
 				float zombieIncPerSec = GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_Z_VIRUS_INC_PER_SEC);
-				zombieValue = zombieValue + (zombieIncPerSec * immunityMod * vacineProgressionMod * deltaTime);
+				zombieValue += (zombieIncPerSec * immunityMod * vacineProgressionMod * deltaTime);
 			}
 			
 			if (antidotTime > 0)
 			{
 				float zombieDecPerSec = 1;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_Z_VIRUS_DEC_PER_SEC, zombieDecPerSec);
-				zombieValue = zombieValue - (zombieDecPerSec * deltaTime);
+				zombieValue -= (zombieDecPerSec * deltaTime);
 			}
 			
 			player.GetTerjeStats().SetZVirusValue(zombieValue);
@@ -105,7 +105,7 @@ class TerjePlayerModifierZVirus : TerjePlayerModifierBase
 					return;
 				}
 				
-				m_zedVoiceTimer = m_zedVoiceTimer + deltaTime;
+				m_zedVoiceTimer += deltaTime;
 				if (m_zedVoiceTimer > 5)
 				{
 					float zombieCriticalSymptomChance = 0;

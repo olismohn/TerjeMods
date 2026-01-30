@@ -23,22 +23,22 @@ class TerjePlayerModifierMind : TerjePlayerModifierBase
 		float mindDiff = mindCurrentValue - m_mindLastValue;
 		if (mindDiff < 0)
 		{
-			if (mindDiff > TerjeMedicineConstants.MIND_TENDENCY_MINUS_STAGE1) mindTendency = -1;
+			if      (mindDiff > TerjeMedicineConstants.MIND_TENDENCY_MINUS_STAGE1) mindTendency = -1;
 			else if (mindDiff > TerjeMedicineConstants.MIND_TENDENCY_MINUS_STAGE2) mindTendency = -2;
-			else mindTendency = -3;
+			else                                                                   mindTendency = -3;
 		}
 		else if (mindDiff > 0)
 		{
-			if (mindDiff < TerjeMedicineConstants.MIND_TENDENCY_PLUS_STAGE1) mindTendency = 1;
+			if      (mindDiff < TerjeMedicineConstants.MIND_TENDENCY_PLUS_STAGE1) mindTendency = 1;
 			else if (mindDiff < TerjeMedicineConstants.MIND_TENDENCY_PLUS_STAGE2) mindTendency = 2;
-			else mindTendency = 3;
+			else                                                                  mindTendency = 3;
 		}
 
-		if (mindCurrentValue < TerjeMedicineConstants.MIND_LEVEL5) mindLevel = 5;
+		if      (mindCurrentValue < TerjeMedicineConstants.MIND_LEVEL5) mindLevel = 5;
 		else if (mindCurrentValue < TerjeMedicineConstants.MIND_LEVEL4) mindLevel = 4;
 		else if (mindCurrentValue < TerjeMedicineConstants.MIND_LEVEL3) mindLevel = 3;
 		else if (mindCurrentValue < TerjeMedicineConstants.MIND_LEVEL2) mindLevel = 2;
-		else mindLevel = 1;
+		else                                                            mindLevel = 1;
 		
 		player.GetTerjeStats().SetMindLevelAndTendency(mindLevel, mindTendency);
 		m_mindLastValue = mindCurrentValue;
@@ -65,20 +65,23 @@ class TerjePlayerModifierMind : TerjePlayerModifierBase
 		if (antidepressLevel > 0)
 		{
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_MIND_RESTORE_MEDS_PER_SEC, mindRestorePerSec);
-			mindRestorePerSec = mindRestorePerSec * (antidepressLevel + 1);
+			mindRestorePerSec *= (antidepressLevel + 1);
 		}
 		else
 		{
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_MIND_RESTORE_COMMON_PER_SEC, mindRestorePerSec);
 		}
 		
-		float perkIrnmindMod;
 		float perkIrmindIncMod = 1.0;
 		float perkIrmindDecMod = 1.0;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "irnmind", perkIrnmindMod))
+		if (player.GetTerjeSkills())
 		{
-			perkIrmindIncMod = 1.0 + perkIrnmindMod;
-			perkIrmindDecMod = 1.0 - Math.Clamp(perkIrnmindMod, 0, 1);
+			float perkIrnmindMod;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "irnmind", perkIrnmindMod))
+			{
+				perkIrmindIncMod += perkIrnmindMod;
+				perkIrmindDecMod -= Math.Clamp(perkIrnmindMod, 0, 1);
+			}
 		}
 		
 		int brainAgents = player.GetSingleAgentCount(eAgents.BRAIN);
@@ -90,7 +93,7 @@ class TerjePlayerModifierMind : TerjePlayerModifierBase
 			player.RemoveAgent(eAgents.BRAIN);
 		}
 		
-		mindCurrentValue = mindCurrentValue + (mindRestorePerSec * perkIrmindIncMod * deltaTime);
+		mindCurrentValue += (mindRestorePerSec * perkIrmindIncMod * deltaTime);
 		
 		float mindDegradationValue = 0;
 		float mindDegradationTime = 0;
@@ -99,10 +102,10 @@ class TerjePlayerModifierMind : TerjePlayerModifierBase
 		{
 			if (mindDegradationTime > 0)
 			{
-				mindDegradationTime = mindDegradationTime - deltaTime;
+				mindDegradationTime -= deltaTime;
 				
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_MIND_DEGRADATION_MODIFIER, mindDegradationMod);
-				mindCurrentValue = mindCurrentValue - (mindDegradationValue * mindDegradationMod * perkIrmindDecMod);
+				mindCurrentValue -= (mindDegradationValue * mindDegradationMod * perkIrmindDecMod);
 			}
 			else
 			{

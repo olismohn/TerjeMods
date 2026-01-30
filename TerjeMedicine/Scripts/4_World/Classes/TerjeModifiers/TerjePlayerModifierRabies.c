@@ -44,7 +44,7 @@ class TerjePlayerModifierRabies : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 		
 		float rabiesValue = player.GetTerjeStats().GetRabiesValue();
@@ -56,14 +56,14 @@ class TerjePlayerModifierRabies : TerjePlayerModifierBase
 			vacineModifier = 0.5;
 		}
 		
-		float perkRabResist;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "rabres", perkRabResist))
+		float perkRabResistMod = 1.0;
+		if (player.GetTerjeSkills())
 		{
-			perkRabResist = 1.0 - Math.Clamp(perkRabResist, 0.0, 1.0);
-		}
-		else
-		{
-			perkRabResist = 1.0;
+			float perkRabResist;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "rabres", perkRabResist))
+			{
+				perkRabResistMod -= Math.Clamp(perkRabResist, 0, 1);
+			}
 		}
 		
 		if (rabiesValue > 0)
@@ -72,7 +72,7 @@ class TerjePlayerModifierRabies : TerjePlayerModifierBase
 			{
 				float rabiesIncPerSec = GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_RABIES_INC_PER_SEC);
 				float immunityMod = Math.Clamp(1.0 - GetPlayerImmunity(player), 0.2, 1.0);
-				rabiesValue = rabiesValue + (rabiesIncPerSec * vacineModifier * immunityMod * perkRabResist * deltaTime);
+				rabiesValue += (rabiesIncPerSec * vacineModifier * immunityMod * perkRabResistMod * deltaTime);
 			}
 			
 			int rabiesLevel = (int)rabiesValue;
@@ -81,7 +81,7 @@ class TerjePlayerModifierRabies : TerjePlayerModifierBase
 				float rabiesDecPerSec = 0;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_RABIES_DEC_PER_SEC, rabiesDecPerSec);
 				float antibioticStrength = (antibioticLevel - rabiesLevel) + 1;
-				rabiesValue = rabiesValue - (antibioticStrength * rabiesDecPerSec * deltaTime);	
+				rabiesValue -= (antibioticStrength * rabiesDecPerSec * deltaTime);	
 			}
 			
 			if (rabiesValue < 1.0 && vacineTime > 1)

@@ -18,34 +18,27 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 			return;
 		}
 		
-		float perkWhealingMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "whealing", perkWhealingMod))
+		float perkWhealingMod = 1.0;
+		float perkSepsisresMod = 1.0;
+		float perkThkbloodMod = 1.0;
+		if (player.GetTerjeSkills())
 		{
-			perkWhealingMod = 1.0 + perkWhealingMod;
-		}
-		else
-		{
-			perkWhealingMod = 1.0;
-		}
-		
-		float perkSepsisresMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "sepsisres", perkSepsisresMod))
-		{
-			perkSepsisresMod = 1.0 - Math.Clamp(perkSepsisresMod, 0, 1);
-		}
-		else
-		{
-			perkSepsisresMod = 1.0;
-		}
-		
-		float perkThkbloodMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "thkblood", perkThkbloodMod))
-		{
-			perkThkbloodMod = Math.Clamp(1.0 + perkThkbloodMod, 0.1, 1);
-		}
-		else
-		{
-			perkThkbloodMod = 1.0;
+			float perkWhealing;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "whealing", perkWhealing))
+			{
+				perkWhealingMod += perkWhealing;
+			}
+			float perkSepsisres;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "sepsisres", perkSepsisres))
+			{
+				perkSepsisresMod -= Math.Clamp(perkSepsisres, 0, 1);
+			}
+			float perkThkblood;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "thkblood", perkThkblood))
+			{
+				perkThkbloodMod += perkThkblood
+				perkThkbloodMod = Math.Clamp(perkThkbloodMod, 0.1, 1);
+			}
 		}
 		
 		// Hemostatic Effect
@@ -54,7 +47,7 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		float hemostaticTimer = 0;
 		if (player && player.IsAlive() && player.GetTerjeStats().GetHemostatic(hemostaticValue, hemostaticTimer) && hemostaticValue > 0)
 		{
-			hemostaticModifier = hemostaticModifier / (hemostaticValue + 1);
+			hemostaticModifier /= (hemostaticValue + 1);
 		}
 		
 		// Wounds
@@ -84,7 +77,7 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 				return;
 			}
 			
-			m_visceraSymptom = m_visceraSymptom + deltaTime;
+			m_visceraSymptom += deltaTime;
 			if (m_visceraSymptom > visceraSymptonPeriod)
 			{
 				m_visceraSymptom = 0;
@@ -168,8 +161,8 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 				float bandagesProgress = player.GetTerjeStats().GetBandagesProgress() + deltaTime;
 				if (bandagesProgress > cleanToDirtyBandageTime)
 				{
-					cleanBandages = cleanBandages - 1;
-					dirtyBandages = dirtyBandages + 1;
+					cleanBandages -= 1;
+					dirtyBandages += 1;
 					
 					player.GetTerjeStats().SetBandagesProgress(0);
 					player.GetTerjeStats().SetBandagesClean(cleanBandages);
@@ -225,10 +218,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		if (cleanBandages > 0)
 		{
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_BANDAGED_WOUNDS_HEAL_TIME, bandagedWoundsHealTime);
-			bandageHealTimeStat = bandageHealTimeStat + (perkWhealingMod * deltaTime);
+			bandageHealTimeStat += (perkWhealingMod * deltaTime);
 			if (bandageHealTimeStat > bandagedWoundsHealTime)
 			{
-				cleanBandages = cleanBandages - 1;
+				cleanBandages -= 1;
 				player.GetTerjeStats().SetBandagesClean(cleanBandages);
 			}
 		}
@@ -237,10 +230,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 			float dirtyBandageWoundsHealModifier = 1;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_DIRTY_BANDAGE_WOUNDS_HEAL_MODIFIER, dirtyBandageWoundsHealModifier);
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_BANDAGED_WOUNDS_HEAL_TIME, bandagedWoundsHealTime);
-			bandageHealTimeStat = bandageHealTimeStat + (perkWhealingMod * deltaTime * dirtyBandageWoundsHealModifier);
+			bandageHealTimeStat += (perkWhealingMod * deltaTime * dirtyBandageWoundsHealModifier);
 			if (bandageHealTimeStat > bandagedWoundsHealTime)
 			{
-				dirtyBandages = dirtyBandages - 1;
+				dirtyBandages -= 1;
 				player.GetTerjeStats().SetBandagesDirty(dirtyBandages);
 			}
 		}
@@ -284,8 +277,8 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 				float saturesProgress = player.GetTerjeStats().GetSuturesProgress() + deltaTime;
 				if (saturesProgress > cleanToDirtySutureTime)
 				{
-					suturesClean = suturesClean - 1;
-					suturesDirty = suturesDirty + 1;
+					suturesClean -= 1;
+					suturesDirty += 1;
 					
 					player.GetTerjeStats().SetSuturesProgress(0);
 					player.GetTerjeStats().SetSuturesClean(suturesClean);
@@ -341,10 +334,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		if (suturesClean > 0 && isSuturesEnabled)
 		{
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SUTURE_WOUNDS_HEAL_TIME, suturedWoundsHealTime);
-			suturesHealTimeStat = suturesHealTimeStat + (perkWhealingMod * deltaTime);
+			suturesHealTimeStat += (perkWhealingMod * deltaTime);
 			if (suturesHealTimeStat > suturedWoundsHealTime)
 			{
-				suturesClean = suturesClean - 1;
+				suturesClean -= 1;
 				player.GetTerjeStats().SetSuturesClean(suturesClean);
 			}
 		}
@@ -353,10 +346,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 			float dirtySutureWoundsHealModifier = 1;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_DIRTY_SUTURE_WOUNDS_HEAL_MODIFIER, dirtySutureWoundsHealModifier);
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SUTURE_WOUNDS_HEAL_TIME, suturedWoundsHealTime);
-			suturesHealTimeStat = suturesHealTimeStat + (perkWhealingMod * deltaTime * dirtySutureWoundsHealModifier);
+			suturesHealTimeStat += (perkWhealingMod * deltaTime * dirtySutureWoundsHealModifier);
 			if (suturesHealTimeStat > suturedWoundsHealTime)
 			{
-				suturesDirty = suturesDirty - 1;
+				suturesDirty -= 1;
 				player.GetTerjeStats().SetSuturesDirty(suturesDirty);
 			}
 		}
@@ -398,8 +391,8 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 				float saturesBandagedProgress = player.GetTerjeStats().GetSuturesBandagedProgress() + deltaTime;
 				if (saturesBandagedProgress > cleanToDirtySutureBandagedTime)
 				{
-					suturesBandagedClean = suturesBandagedClean - 1;
-					suturesBandagedDirty = suturesBandagedDirty + 1;
+					suturesBandagedClean -= 1;
+					suturesBandagedDirty += 1;
 					
 					player.GetTerjeStats().SetSuturesBandagedProgress(0);
 					player.GetTerjeStats().SetSuturesBandagedClean(suturesBandagedClean);
@@ -455,10 +448,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		if (suturesBandagedClean > 0 && isSuturesEnabled)
 		{
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SUTURE_BANDAGED_WOUNDS_HEAL_TIME, suturedBandagedWoundsHealTime);
-			suturesBandagedHealTimeStat = suturesBandagedHealTimeStat + (perkWhealingMod * deltaTime);
+			suturesBandagedHealTimeStat += (perkWhealingMod * deltaTime);
 			if (suturesBandagedHealTimeStat > suturedBandagedWoundsHealTime)
 			{
-				suturesBandagedClean = suturesBandagedClean - 1;
+				suturesBandagedClean -= 1;
 				player.GetTerjeStats().SetSuturesBandagedClean(suturesBandagedClean);
 			}
 		}
@@ -467,10 +460,10 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 			float dirtySutureBandagedWoundsHealModifier = 1;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_DIRTY_SUTURE_BANDAGED_WOUNDS_HEAL_MODIFIER, dirtySutureBandagedWoundsHealModifier);
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SUTURE_BANDAGED_WOUNDS_HEAL_TIME, suturedBandagedWoundsHealTime);
-			suturesBandagedHealTimeStat = suturesBandagedHealTimeStat + (perkWhealingMod * deltaTime * dirtySutureBandagedWoundsHealModifier);
+			suturesBandagedHealTimeStat += (perkWhealingMod * deltaTime * dirtySutureBandagedWoundsHealModifier);
 			if (suturesBandagedHealTimeStat > suturedBandagedWoundsHealTime)
 			{
-				suturesBandagedDirty = suturesBandagedDirty - 1;
+				suturesBandagedDirty -= 1;
 				player.GetTerjeStats().SetSuturesBandagedDirty(suturesBandagedDirty);
 			}
 		}
@@ -493,11 +486,14 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		eBrokenLegs currentBrokenLegs = player.GetBrokenLegs();
 		if (!player.IsUnconscious() && m_lastBrokenLegsState == eBrokenLegs.BROKEN_LEGS_SPLINT && currentBrokenLegs == eBrokenLegs.NO_BROKEN_LEGS)
 		{
-			float immunityExpGain = GetTerjeSettingInt(TerjeSettingsCollection.MEDICINE_IMMUNITY_FIX_LEGS_EXP_GAIN);
-			if (immunityExpGain > 0 && m_lastBrokenLegsExpGain <= 0 && player && player.GetTerjeSkills() != null)
+			if (player.GetTerjeSkills())
 			{
-				player.GetTerjeSkills().AddSkillExperience("immunity", immunityExpGain);
-				m_lastBrokenLegsExpGain = 1800; // exp gain delay to prevent exp farming
+				float immunityExpGain = GetTerjeSettingInt(TerjeSettingsCollection.MEDICINE_IMMUNITY_FIX_LEGS_EXP_GAIN);
+				if (immunityExpGain > 0 && m_lastBrokenLegsExpGain <= 0)
+				{
+					player.GetTerjeSkills().AddSkillExperience("immunity", immunityExpGain);
+					m_lastBrokenLegsExpGain = 1800; // exp gain delay to prevent exp farming
+				}
 			}
 		}
 		
@@ -505,7 +501,7 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 		
 		if (m_lastBrokenLegsExpGain > 0)
 		{
-			m_lastBrokenLegsExpGain = m_lastBrokenLegsExpGain - deltaTime;
+			m_lastBrokenLegsExpGain -= deltaTime;
 		}
 	}
 }

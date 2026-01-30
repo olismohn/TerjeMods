@@ -17,19 +17,19 @@ class TerjePlayerModifierOverdose : TerjePlayerModifierBase
 		float overdoseValue = player.GetTerjeStats().GetOverdoseValue();
 		if (overdoseValue > 0)
 		{
-			float perkIntoxicresMod;
-			if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "intoxicres", perkIntoxicresMod))
+			float perkIntoxicresMod = 1.0;
+			if (player.GetTerjeSkills())
 			{
-				perkIntoxicresMod = 1.0 + perkIntoxicresMod;
-			}
-			else
-			{
-				perkIntoxicresMod = 1.0;
+				float perkIntoxicres;
+				if (player.GetTerjeSkills().GetPerkValue("immunity", "intoxicres", perkIntoxicres))
+				{
+					perkIntoxicresMod += perkIntoxicres;
+				}
 			}
 			
 			float overdoseDecPerSec = 0;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_OVERDOSE_DEC_PER_SEC, overdoseDecPerSec);
-			overdoseValue = overdoseValue - (overdoseDecPerSec * perkIntoxicresMod * deltaTime);
+			overdoseValue -= (overdoseDecPerSec * perkIntoxicresMod * deltaTime);
 			player.GetTerjeStats().SetOverdoseValue(overdoseValue);
 			
 			if (!player.GetAllowDamage())

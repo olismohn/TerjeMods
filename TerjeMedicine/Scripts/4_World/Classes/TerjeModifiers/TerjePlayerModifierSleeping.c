@@ -25,22 +25,22 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 		float sleepingDiffTend = currentSleepingValue - m_sleepingLastValue;
 		if (sleepingDiffTend < 0)
 		{
-			if (sleepingDiffTend > TerjeMedicineConstants.SLEEPING_TENDENCY_MINUS_STAGE1) sleepTendency = -1;
+			if      (sleepingDiffTend > TerjeMedicineConstants.SLEEPING_TENDENCY_MINUS_STAGE1) sleepTendency = -1;
 			else if (sleepingDiffTend > TerjeMedicineConstants.SLEEPING_TENDENCY_MINUS_STAGE2) sleepTendency = -2;
-			else sleepTendency = -3;
+			else                                                                               sleepTendency = -3;
 		}
 		else if (sleepingDiffTend > 0)
 		{
-			if (sleepingDiffTend < TerjeMedicineConstants.SLEEPING_TENDENCY_PLUS_STAGE1) sleepTendency = 1;
+			if      (sleepingDiffTend < TerjeMedicineConstants.SLEEPING_TENDENCY_PLUS_STAGE1) sleepTendency = 1;
 			else if (sleepingDiffTend < TerjeMedicineConstants.SLEEPING_TENDENCY_PLUS_STAGE2) sleepTendency = 2;
-			else sleepTendency = 3;
+			else                                                                              sleepTendency = 3;
 		}
 
-		if (currentSleepingValue < TerjeMedicineConstants.SLEEPING_LEVEL5) sleepLevel = 5;
+		if      (currentSleepingValue < TerjeMedicineConstants.SLEEPING_LEVEL5) sleepLevel = 5;
 		else if (currentSleepingValue < TerjeMedicineConstants.SLEEPING_LEVEL4) sleepLevel = 4;
 		else if (currentSleepingValue < TerjeMedicineConstants.SLEEPING_LEVEL3) sleepLevel = 3;
 		else if (currentSleepingValue < TerjeMedicineConstants.SLEEPING_LEVEL2) sleepLevel = 2;
-		else sleepLevel = 1;
+		else                                                                    sleepLevel = 1;
 
 		// Handle wake-up conditions
 		bool isEnergedMarker = false;
@@ -101,7 +101,7 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 		{
 			float sleepingDecPerSec = 0;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SLEEPING_DEC_PER_SEC_COMMON, sleepingDecPerSec);
-			sleepingDiff = sleepingDiff - (sleepingDecPerSec * deltaTime);
+			sleepingDiff -= (sleepingDecPerSec * deltaTime);
 		}
 		
 		TerjeMedicineSleepingLevel sleepingState = TerjeMedicineSleepingLevel.TERJESL_NONE;	
@@ -110,14 +110,14 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 		bool isFirstSleepingTick = (!m_lastSleepingMarker && isSleepingMarker);
 		if (isSleepingMarker || isUnconsciousMarker || isEnergedMarker)
 		{
-			float perkFsleepMod;
-			if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "fsleep", perkFsleepMod))
+			float perkFsleepMod = 1.0;
+			if (player.GetTerjeSkills())
 			{
-				perkFsleepMod = 1.0 + perkFsleepMod;
-			}
-			else
-			{
-				perkFsleepMod = 1.0;
+				float perkFsleep;
+				if (player.GetTerjeSkills().GetPerkValue("immunity", "fsleep", perkFsleep))
+				{
+					perkFsleepMod += perkFsleep;
+				}
 			}
 			
 			float heatValue = player.GetStatHeatComfort().Get();
@@ -125,7 +125,7 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 			if (isUnconsciousMarker && sleepingIncUncon > 0)
 			{
 				sleepingState = TerjeMedicineSleepingLevel.TERJESL_NONE;
-				sleepingDiff = sleepingDiff + (sleepingIncUncon * perkFsleepMod * deltaTime);
+				sleepingDiff += (sleepingIncUncon * perkFsleepMod * deltaTime);
 			}
 			else if (player.HasTerjeSicknesOrInjures() && GetTerjeSettingBool(TerjeSettingsCollection.MEDICINE_SLEEPING_BLOCK_WITH_WOUNDS))
 			{
@@ -164,14 +164,14 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 				float sleepingIncComfort = 0;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SLEEPING_INC_COMFORT, sleepingIncComfort);
 				sleepingState = TerjeMedicineSleepingLevel.TERJESL_PERFECT;
-				sleepingDiff = sleepingDiff + (sleepingIncComfort * perkFsleepMod * deltaTime);
+				sleepingDiff += (sleepingIncComfort * perkFsleepMod * deltaTime);
 			}
 			else
 			{
 				float sleepingIncCommon = 0;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SLEEPING_INC_COMMON, sleepingIncCommon);
 				sleepingState = TerjeMedicineSleepingLevel.TERJESL_COMFORT;
-				sleepingDiff = sleepingDiff + (sleepingIncCommon * perkFsleepMod * deltaTime);
+				sleepingDiff += (sleepingIncCommon * perkFsleepMod * deltaTime);
 			}
 		}
 		
@@ -181,7 +181,7 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 		
 		if (sleepingStateInt > 0 && !isUnconsciousMarker)
 		{
-			m_terjeMedicineSleepingSoundTimer = m_terjeMedicineSleepingSoundTimer + deltaTime;
+			m_terjeMedicineSleepingSoundTimer += deltaTime;
 			if (m_terjeMedicineSleepingSoundTimer >= 5)
 			{
 				m_terjeMedicineSleepingSoundTimer = 0;
@@ -221,7 +221,7 @@ class TerjePlayerModifierSleeping : TerjePlayerModifierBase
 			m_terjeMedicineSleepingSoundTimer = -10;
 		}
 		
-		currentSleepingValue = currentSleepingValue + sleepingDiff;
+		currentSleepingValue += sleepingDiff;
 		player.GetTerjeStats().SetSleepingValue(currentSleepingValue);
 		
 		if (!player.GetAllowDamage())

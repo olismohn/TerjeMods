@@ -10,7 +10,7 @@ class TerjePlayerModifierSepsis : TerjePlayerModifierBase
 	override void OnServerFixedTick(PlayerBase player, float deltaTime)
 	{
 		super.OnServerFixedTick(player, deltaTime);
-				
+		
 		float antisepsisTime = player.GetTerjeStats().GetAntisepsisValue();
 		if (antisepsisTime > 0)
 		{	
@@ -30,7 +30,7 @@ class TerjePlayerModifierSepsis : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 
 		float sepsisValue = player.GetTerjeStats().GetSepsisValue();
@@ -39,13 +39,13 @@ class TerjePlayerModifierSepsis : TerjePlayerModifierBase
 			int sepsisIntOrig = (int)sepsisValue;
 			float immunityMod = Math.Clamp(1.0 - GetPlayerImmunity(player), 0.2, 1.0);
 			float sepsisIncPerSec = GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SEPSIS_INC_PER_SEC);	
-			sepsisValue = sepsisValue + (sepsisIncPerSec * immunityMod * deltaTime);
+			sepsisValue += (sepsisIncPerSec * immunityMod * deltaTime);
 			
 			if (antisepsisTime > 0)
 			{
 				float sepsisDecPerSec = 1;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_SEPSIS_DEC_PER_SEC, sepsisDecPerSec);
-				sepsisValue = sepsisValue - (sepsisDecPerSec * deltaTime);	
+				sepsisValue -= (sepsisDecPerSec * deltaTime);	
 			}
 			
 			player.GetTerjeStats().SetSepsisValue(sepsisValue);

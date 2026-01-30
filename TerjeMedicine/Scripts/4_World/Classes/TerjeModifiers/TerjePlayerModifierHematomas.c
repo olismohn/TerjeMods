@@ -40,13 +40,16 @@ class TerjePlayerModifierHematomas : TerjePlayerModifierBase
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_HEMATOMAS_HEAL_COMMON_MODIFIER, hematomaHealModifier);
 			}	
 			
-			float perkHematomrecMod;
-			if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "hematomrec", perkHematomrecMod))
+			if (player.GetTerjeSkills())
 			{
-				hematomaHealModifier = hematomaHealModifier * (1.0 + perkHematomrecMod);
+				float perkHematomrecMod;
+				if (player.GetTerjeSkills().GetPerkValue("immunity", "hematomrec", perkHematomrecMod))
+				{
+					hematomaHealModifier *= (1.0 + perkHematomrecMod);
+				}
 			}
 			
-			hematomas = hematomas - (hematomaHealModifier * deltaTime);
+			hematomas -= (hematomaHealModifier * deltaTime);
 			player.GetTerjeStats().SetHematomas(hematomas);
 			
 			float hematomasCriticalCount = 1;

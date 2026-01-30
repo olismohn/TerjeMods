@@ -39,7 +39,7 @@ class TerjePlayerModifierContusion : TerjePlayerModifierBase
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_CONTUSION_HEAL_MODIFIER, contusionHealModifier);
 			}
 			
-			contusionValue = contusionValue - (contusionDecPerSec * contusionHealModifier * deltaTime);
+			contusionValue -= (contusionDecPerSec * contusionHealModifier * deltaTime);
 			player.GetTerjeStats().SetContusionValue(contusionValue);
 			
 			if (contusionValue > 1)

@@ -55,7 +55,7 @@ class TerjePlayerModifierBiohazard : TerjePlayerModifierBase
 		{
 			float biohazardTransferAgentsModifier = 0;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_BIOHAZARD_TRANSFER_AGENTS_MODIFIER, biohazardTransferAgentsModifier);
-			biohazardValue = biohazardValue + (biohazardTransferAgentsModifier * (float)biohazardVanillaAgents);
+			biohazardValue += (biohazardTransferAgentsModifier * (float)biohazardVanillaAgents);
 			
 			player.RemoveAgent(eAgents.CHEMICAL_POISON);
 		}
@@ -70,14 +70,14 @@ class TerjePlayerModifierBiohazard : TerjePlayerModifierBase
 		
 		if (biohazardValue > 0)
 		{
-			float perkResistMod;
-			if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "biohzres", perkResistMod))
+			float perkResistMod = 1.0;
+			if (player.GetTerjeSkills())
 			{
-				perkResistMod += 1.0;
-			}
-			else
-			{
-				perkResistMod = 1.0;
+				float perkResist;
+				if (player.GetTerjeSkills().GetPerkValue("immunity", "biohzres", perkResist))
+				{
+					perkResistMod += perkResist;
+				}
 			}
 			
 			float biohazardDecPerSec = 0;

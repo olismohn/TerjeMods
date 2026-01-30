@@ -44,7 +44,7 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 		
 		float influenzaIncPerSec = 0;
@@ -60,14 +60,14 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 			vacineModifier = 0.5;
 		}
 		
-		float perkColdresMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "coldres", perkColdresMod))
+		float perkColdresMod = 1.0;
+		if (player.GetTerjeSkills())
 		{
-			perkColdresMod = 1.0 - Math.Clamp(perkColdresMod, 0.0, 1.0);
-		}
-		else
-		{
-			perkColdresMod = 1.0;
+			float perkColdres;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "coldres", perkColdres))
+			{
+				perkColdresMod -= Math.Clamp(perkColdres, 0, 1);
+			}
 		}
 		
 		float immunityMod = Math.Clamp(1.0 - GetPlayerImmunity(player), 0, 1);
@@ -78,21 +78,21 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 			{
 				if (GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_TEMPERATURE_EMPTY_MODIFIER, influenzaTemperatureDropModifier) && influenzaTemperatureDropModifier > 0)
 				{
-					influenzaValue = influenzaValue + (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
+					influenzaValue += (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
 				}
 			}
 			else if (currHeatComf < PlayerConstants.THRESHOLD_HEAT_COMFORT_MINUS_CRITICAL)
 			{
 				if (GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_TEMPERATURE_CRIT_MODIFIER, influenzaTemperatureDropModifier) && influenzaTemperatureDropModifier > 0)
 				{
-					influenzaValue = influenzaValue + (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
+					influenzaValue += (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
 				}
 			}
 			else if (currHeatComf < PlayerConstants.THRESHOLD_HEAT_COMFORT_MINUS_WARNING)
 			{
 				if (GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_TEMPERATURE_WARN_MODIFIER, influenzaTemperatureDropModifier) && influenzaTemperatureDropModifier > 0)
 				{
-					influenzaValue = influenzaValue + (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
+					influenzaValue += (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime * influenzaTemperatureDropModifier);
 				}
 			}
 		}
@@ -104,7 +104,7 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 			{
 				float influenzaTransferAgentsModifier = 0;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_TRANSFER_AGENTS_MODIFIER, influenzaTransferAgentsModifier);
-				influenzaValue = influenzaValue + (influenzaTransferAgentsModifier * vacineModifier * immunityMod * perkColdresMod * (float)influenzaVanillaAgents);
+				influenzaValue += (influenzaTransferAgentsModifier * vacineModifier * immunityMod * perkColdresMod * (float)influenzaVanillaAgents);
 			}
 			
 			player.RemoveAgent(eAgents.INFLUENZA);
@@ -117,24 +117,27 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_DEC_PER_SEC, influenzaDecPerSec);
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_IMMUNITY_HEAL_THRESHOLD, influenzaImmunityHealThreshold);
 
-			float perkFtwarmMod;
-			if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "ftwarm", perkFtwarmMod))
+			if (player.GetTerjeSkills())
 			{
-				influenzaImmunityHealThreshold = influenzaImmunityHealThreshold * (1.0 + perkFtwarmMod);
-				influenzaDecPerSec = influenzaDecPerSec * (1.0 + perkFtwarmMod);
+				float perkFtwarmMod;
+				if (player.GetTerjeSkills().GetPerkValue("immunity", "ftwarm", perkFtwarmMod))
+				{
+					influenzaImmunityHealThreshold *= (1.0 + perkFtwarmMod);
+					influenzaDecPerSec *= (1.0 + perkFtwarmMod);
+				}
 			}
 			
 			if (player.GetHeatBufferStage() > 0 && influenzaValue < influenzaImmunityHealThreshold)
 			{
 				float influenzaDefaultImmunityStrength = 0;
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_INFLUENZA_DEFAULT_IMMUNITY_STRENGTH, influenzaDefaultImmunityStrength);
-				influenzaValue = influenzaValue - (influenzaDefaultImmunityStrength * influenzaDecPerSec * deltaTime);
+				influenzaValue -= (influenzaDefaultImmunityStrength * influenzaDecPerSec * deltaTime);
 			}
 			else if (influenzaValue > GetInfluenzaVirusAutoReproductionThreshold(player))
 			{
 				if (vacineTime < 1 || influenzaValue > 1)
 				{
-					influenzaValue = influenzaValue + (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime);
+					influenzaValue += (influenzaIncPerSec * vacineModifier * immunityMod * perkColdresMod * deltaTime);
 				}
 			}
 			
@@ -142,7 +145,7 @@ class TerjePlayerModifierInfluenza : TerjePlayerModifierBase
 			if (antibioticLevel > 0 && antibioticLevel >= influenzaLevel)
 			{
 				float antibioticStrength = (antibioticLevel - influenzaLevel) + 1;
-				influenzaValue = influenzaValue - (antibioticStrength * influenzaDecPerSec * deltaTime);	
+				influenzaValue -= (antibioticStrength * influenzaDecPerSec * deltaTime);	
 			}
 			
 			if (influenzaValue < 1.0 && vacineTime > 1)

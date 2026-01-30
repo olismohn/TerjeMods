@@ -40,32 +40,29 @@ class TerjePlayerModifierPoison : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 		
 		if (m_firstSymptomTime > 0)
 		{
-			m_firstSymptomTime = m_firstSymptomTime + deltaTime;
+			m_firstSymptomTime += deltaTime;
 		}
 		
-		float perkPoisonresMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "poisonres", perkPoisonresMod))
+		float perkPoisonres;
+		float perkSvdinner;
+		float perkPoisonresMod = 1.0;
+		float perkSvdinnerMod = 1.0;
+		if (player.GetTerjeSkills())
 		{
-			perkPoisonresMod = 1.0 + perkPoisonresMod;
-		}
-		else
-		{
-			perkPoisonresMod = 1.0;
-		}
-		
-		float perkSvdinnerMod;
-		if (player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("immunity", "svdinner", perkSvdinnerMod))
-		{
-			perkSvdinnerMod = Math.Clamp(1.0 + perkSvdinnerMod, 0, 1);
-		}
-		else
-		{
-			perkSvdinnerMod = 1.0;
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "poisonres", perkPoisonres))
+			{
+				perkPoisonresMod += perkPoisonres;
+			}
+			if (player.GetTerjeSkills().GetPerkValue("immunity", "svdinner", perkSvdinner))
+			{
+				perkSvdinnerMod += perkSvdinner;
+				perkSvdinnerMod = Math.Clamp(perkSvdinnerMod, 0, 1);
+			}
 		}
 		
 		float poisonValue = player.GetTerjeStats().GetPoisonValue();
@@ -74,14 +71,14 @@ class TerjePlayerModifierPoison : TerjePlayerModifierBase
 		float immunityMod = Math.Clamp(1.0 - GetPlayerImmunity(player), 0.2, 1.0);
 		if (poisonValue < 2.5)
 		{
-			poisonValue = poisonValue + (immunityMod * perkSvdinnerMod * this.TransferVanillaAgents(player, eAgents.FOOD_POISON, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_FOOD_POISON_AGENTS_MODIFIER));
+			poisonValue += (immunityMod * perkSvdinnerMod * this.TransferVanillaAgents(player, eAgents.FOOD_POISON, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_FOOD_POISON_AGENTS_MODIFIER));
 		}
 		
 		if (poisonValue < 3.5)
 		{
-			poisonValue = poisonValue + (immunityMod * this.TransferVanillaAgents(player, eAgents.SALMONELLA, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_SALMONELLA_MODIFIER));
-			poisonValue = poisonValue + (immunityMod * this.TransferVanillaAgents(player, eAgents.CHOLERA, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_CHOLERA_MODIFIER));
-			poisonValue = poisonValue + (immunityMod * this.TransferVanillaAgents(player, eAgents.HEAVYMETAL, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_HEAVYMETAL_MODIFIER));
+			poisonValue += (immunityMod * this.TransferVanillaAgents(player, eAgents.SALMONELLA, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_SALMONELLA_MODIFIER));
+			poisonValue += (immunityMod * this.TransferVanillaAgents(player, eAgents.CHOLERA, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_CHOLERA_MODIFIER));
+			poisonValue += (immunityMod * this.TransferVanillaAgents(player, eAgents.HEAVYMETAL, TerjeSettingsCollection.MEDICINE_POISON_TRANSFER_HEAVYMETAL_MODIFIER));
 		}
 		
 		int poisonLevel = (int)poisonValue;
@@ -97,7 +94,7 @@ class TerjePlayerModifierPoison : TerjePlayerModifierBase
 			float poisonDecPerSec = 0;
 			float poisonVomitForceModifier = 1.0;
 			GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_POISON_DEC_PER_SEC, poisonDecPerSec);	
-			poisonValue = poisonValue - (poisonDecPerSec * perkPoisonresMod * deltaTime);
+			poisonValue -= (poisonDecPerSec * perkPoisonresMod * deltaTime);
 
 			if (antipoisonLevel >= poisonLevel)
 			{
@@ -105,7 +102,7 @@ class TerjePlayerModifierPoison : TerjePlayerModifierBase
 				GetTerjeSettingFloat(TerjeSettingsCollection.MEDICINE_POISON_ANTIDOTE_HEAL_MULTIPLIER, poisonAntidoteHealMultiplier);
 				
 				float antipoisonStrength = (antipoisonLevel - poisonLevel) + 1;
-				poisonValue = poisonValue - (antipoisonStrength * poisonDecPerSec * perkPoisonresMod * poisonAntidoteHealMultiplier * deltaTime);	
+				poisonValue -= (antipoisonStrength * poisonDecPerSec * perkPoisonresMod * poisonAntidoteHealMultiplier * deltaTime);	
 			}
 			
 			player.GetTerjeStats().SetPoisonValue(poisonValue);

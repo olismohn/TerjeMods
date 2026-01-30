@@ -75,14 +75,17 @@ class TerjePlayerModifierPain : TerjePlayerModifierBase
 		
 		if (m_immunityInterval > 0)
 		{
-			m_immunityInterval = m_immunityInterval - deltaTime;
+			m_immunityInterval -= deltaTime;
 		}
 		
 		float painSymtomChance = 0;
 		int painLevel = (int)Math.Clamp(painValue, 0, 3);
-		if (painLevel > 0 && player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkLevel("immunity", "lowpain") > 0)
+		if (player.GetTerjeSkills())
 		{
-			painLevel = painLevel - 1;
+			if (painLevel > 0 && player.GetTerjeSkills().GetPerkLevel("immunity", "lowpain") > 0)
+			{
+				painLevel -= 1;
+			}
 		}
 		
 		float painDecLevelValue = 0;
