@@ -12,7 +12,7 @@ class TerjePlayerModifierPoison : TerjePlayerModifierBase
 	override void OnServerFixedTick(PlayerBase player, float deltaTime)
 	{
 		super.OnServerFixedTick(player, deltaTime);
-			
+		
 		int antipoisonLevel = 0;
 		float antipoisonTime = 0;
 		if (player.GetTerjeStats().GetAntipoison(antipoisonLevel, antipoisonTime))
