@@ -9,16 +9,10 @@ class TerjePlayerModifierRadioactiveScriptableAreas : TerjePlayerModifierBase
 	{
 		super.OnServerFixedTick(player, deltaTime);
 		
-		if (!player.GetAllowDamage())
-		{
-			return;
-		}
+		if (!player.GetAllowDamage()) return;
 		
 		PluginTerjeScriptableAreas plugin = GetTerjeScriptableAreas();
-		if (!plugin)
-		{
-			return;
-		}
+		if (!plugin) return;
 		
 		// Calculate radiation zones
 		float playerRadiation = player.GetTerjeRadiation();
@@ -80,36 +74,20 @@ class TerjePlayerModifierRadioactiveScriptableAreas : TerjePlayerModifierBase
 			}
 			
 			ItemBase inHands = player.GetItemInHands();
-			if (inHands != null)
-			{
-				TransferRadiationWithEntity(player, inHands, playerRadiation, transferThreshold, transferAmount);
-			}
+			if (inHands != null) TransferRadiationWithEntity(player, inHands, playerRadiation, transferThreshold, transferAmount);
 			
 			EntityAI parent = EntityAI.Cast(player.GetParent());
-			if (parent != null)
-			{
-				TransferRadiationWithEntity(player, parent, playerRadiation, transferThreshold, transferAmount);
-			}
+			if (parent != null) TransferRadiationWithEntity(player, parent, playerRadiation, transferThreshold, transferAmount);
 		}
 	}
 	
 	void TransferRadiationWithEntity(PlayerBase player, EntityAI entity, float playerRadiation, float transferThreshold, float transferAmount)
 	{
-		if (!player)
-		{
-			return;
-		}
-		
-		if (!entity)
-		{
-			return;
-		}
+		if (!player) return;
+		if (!entity) return;
 		
 		PluginTerjeScriptableAreas plugin = GetTerjeScriptableAreas();
-		if (!plugin)
-		{
-			return;
-		}
+		if (!plugin) return;
 		
 		float maxTransferAmount;
 		float finalTransferAmount;
