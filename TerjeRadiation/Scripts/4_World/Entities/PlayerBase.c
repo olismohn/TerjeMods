@@ -144,7 +144,7 @@ modded class PlayerBase
 		float perkRadresMod;
 		if (GetTerjeSkills() && GetTerjeSkills().GetPerkValue("immunity", "radres", perkRadresMod))
 		{
-			protection = protection + ((1.0 - protection) * perkRadresMod);
+			protection += (1.0 - protection) * perkRadresMod;
 		}
 		
 		return Math.Clamp(protection, 0, 1);
