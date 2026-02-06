@@ -241,9 +241,9 @@ modded class JMPlayerForm
 				player = PlayerBase.Cast(GetGame().GetPlayer());
 				
 			if (button == MouseState.LEFT)
-				player.TerjeRPCSingleParam(TerjeSkillsConstants.TRPC_PLAYER_PERK_APPLY, new Param2<string, string>(skillId, perkId), true, null);
+				player.TerjeRPCSingleParam(TerjeSkillsConstants.TRPC_PLAYER_PERK_APPLY, new Param2<string, string>(skillId, perkId), true, player.GetIdentity());
 			else if (button == MouseState.RIGHT)
-				player.TerjeRPCSingleParam(TerjeSkillsConstants.TRPC_PLAYER_PERK_DEC, new Param2<string, string>(skillId, perkId), true, null);
+				player.TerjeRPCSingleParam(TerjeSkillsConstants.TRPC_PLAYER_PERK_DEC, new Param2<string, string>(skillId, perkId), true, player.GetIdentity());
 						
 			Widget highlightWidget = w.FindAnyWidget("terje_perk_highlight");
 			if (highlightWidget)
@@ -258,11 +258,8 @@ modded class JMPlayerForm
 		if (!m_TerjePerkWidgets)
 			return;
 
-		PlayerBase player = null;
-		if (m_SelectedInstance)
-			player = PlayerBase.Cast(m_SelectedInstance.PlayerObject);
-		if (!player)
-			player = PlayerBase.Cast(GetGame().GetPlayer());
+		if (!m_SelectedInstance)
+			return;
 
 		foreach (string perkId, Widget perkWidget : m_TerjePerkWidgets)
 		{
@@ -290,11 +287,8 @@ modded class JMPlayerForm
 			string iconPath = perkCfg.GetDisabledIcon();
 			string levelPath = "set:TerjePerkLevels_icon image:L_NONE";
 			string borderPath = "set:TerjeSkillBorders_icon image:ts_ui_perk_border0";
-
-			if (player && player.GetTerjeSkills())
-			{
-				player.GetTerjeSkills().GetPerkStatus(widgetSkillCfg.GetId(), perkCfg.GetId(), perkLevel, perkActiveLevel, canBeUpgraded);
-			}
+			
+			m_SelectedInstance.GetTerjePerkStatus(widgetSkillCfg.GetId(), perkCfg.GetId(), perkLevel, perkActiveLevel, canBeUpgraded);
 
 			if (perkLevel > 0)
 			{
