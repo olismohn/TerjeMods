@@ -41,13 +41,13 @@ modded class PlayerBase
 	void OnTerjePlayerLoaded() 
 	{
 		//Calling the function to load blood type on player load
-		TerjePlayerLoadBloodType()
+		TerjePlayerLoadBloodType();
 	}
 	
 	void OnTerjePlayerRespawned() 
 	{
 		//Calling the function to load blood type on respawn
-		TerjePlayerLoadBloodType()
+		TerjePlayerLoadBloodType();
 	}
 	
 	void OnTerjeProfileFirstCreation() {}
