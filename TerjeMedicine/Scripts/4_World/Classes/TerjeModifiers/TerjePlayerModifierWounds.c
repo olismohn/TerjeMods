@@ -36,7 +36,7 @@ class TerjePlayerModifierWounds : TerjePlayerModifierBase
 			float perkThkblood;
 			if (player.GetTerjeSkills().GetPerkValue("immunity", "thkblood", perkThkblood))
 			{
-				perkThkbloodMod += perkThkblood
+				perkThkbloodMod += perkThkblood;
 				perkThkbloodMod = Math.Clamp(perkThkbloodMod, 0.1, 1);
 			}
 		}
