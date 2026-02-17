@@ -46,7 +46,7 @@ class CfgVehicles
 		medBloodRegenMaxTimeSec=1800;
 		medHematomaHealMaxTimeSec=1800;
 		medAdrenalinMaxTimeSec=1800;
-		medAntidepresantMaxTimer=1800;
+		medAntidepresantMaxTimeSec=1800;
 		class DamageSystem
 		{
 			class GlobalHealth

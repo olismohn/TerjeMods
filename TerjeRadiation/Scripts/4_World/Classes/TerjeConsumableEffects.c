@@ -1,67 +1,73 @@
 modded class TerjeConsumableEffects
 {
-	override void Apply(EntityAI entity, string classname, PlayerBase player, float amount)
+	override void TerjeApplyPositiveEffects(string classname, PlayerBase player, float amount, float perkPharmacMod)
 	{
-		super.Apply(entity, classname, player, amount);
+		super.TerjeApplyPositiveEffects(classname, player, amount, perkPharmacMod);
 		
-		float timeModifier;
-		if (player && player.GetTerjeSkills() && player.GetTerjeSkills().GetPerkValue("med", "pharmac", timeModifier))
-		{
-			timeModifier = 1.0 + timeModifier;
-		}
-		else
-		{
-			timeModifier = 1.0;
-		}
+		int medLevel;
+		float medValue;
+		float medTimeSec;
 		
-		if (player && player.GetTerjeStats())
+		int medActiveLevel;
+		float medActiveValue;
+		float medActiveTimeSec;
+		
+		int MaxTimeSec;
+		float ActiveTimeSec;
+		
+		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
+		if (medLevel > 0)
 		{
-			int medRadprotectLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
-			if (medRadprotectLevel > 0)
-			{
-				int activeAntiradValue = 0;
-				float activeAntiradTime = 0;
-				player.GetTerjeStats().GetAntirad(activeAntiradValue, activeAntiradTime);
-				
-				float medRadprotectTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
-				if (medRadprotectLevel >= activeAntiradValue && medRadprotectTimeSec > 0)
-				{
-					int medRadprotectMaxTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradMaxTimer" );
-					if (medRadprotectMaxTimeSec <= 0)
-					{
-						medRadprotectMaxTimeSec = 1800;
-					}
-					
-					player.GetTerjeStats().SetAntirad(medRadprotectLevel, Math.Min(medRadprotectMaxTimeSec, activeAntiradTime + (medRadprotectTimeSec * amount * timeModifier)));
-				}
-			}
+			medActiveLevel = 0;
+			medActiveTimeSec = 0;
+			player.GetTerjeStats().GetAntirad(medActiveLevel, medActiveTimeSec);
 			
-			float medRadiationIncrement = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
-			if (medRadiationIncrement != 0)
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
+			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				player.GetTerjeStats().SetRadiationValue(player.GetTerjeStats().GetRadiationValue() + (medRadiationIncrement * amount));
+				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntirad");
+				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntirad(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
 			}
+		}
+	}
+	
+	override void TerjeApplyNegativeEffects(string classname, PlayerBase player, float amount)
+	{
+		super.TerjeApplyNegativeEffects(classname, player, amount);
+		
+		float medDmgValue;
+		
+		medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
+		if (medDmgValue != 0)
+		{
+			player.GetTerjeStats().SetRadiationValue(player.GetTerjeStats().GetRadiationValue() + (medDmgValue * amount));
 		}
 	}
 	
 	override string Describe(EntityAI entity, string classname)
 	{
 		string result = super.Describe(entity, classname);
-		float medRadprotectTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
-		int medRadprotectLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
-		if (medRadprotectLevel > 0 && medRadprotectTimeSec > 0)
+		int medLevel;
+		float medValue;
+		float medTimeSec;
+		
+		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
+		medValue = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
+		if (medValue > 0 && medTimeSec > 0)
 		{
-			result = result + "#STR_TERJERAD_EFFECT_RADPROTECT <color rgba='97,215,124,255'>" + medRadprotectLevel + "</color> (" + (int)(medRadprotectTimeSec) + "sec)<br/>";			
+			result += "#STR_TERJERAD_EFFECT_RADPROTECT " + COLOR_GREEN + medValue + TimeValue(medTimeSec);			
 		}
 		
-		float medRadiationIncrement = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
-		if (medRadiationIncrement > 0)
+		float medDmgValue;
+		medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
+		if (medDmgValue > 0)
 		{
-			result = result + "#STR_TERJERAD_EFFECT_RADIATION <color rgba='97,215,124,255'>+" + (int)(medRadiationIncrement) + "%</color><br/>";
+			result += "#STR_TERJERAD_EFFECT_RADIATION " + COLOR_GREEN + PercentValue("-", medDmgValue);
 		}
-		else if (medRadiationIncrement < 0)
+		else if (medDmgValue < 0)
 		{
-			result = result + "#STR_TERJERAD_EFFECT_RADIATION <color rgba='198,59,64,255'>" + (int)(medRadiationIncrement) + "%</color><br/>";
+			result += "#STR_TERJERAD_EFFECT_RADIATION " + COLOR_RED + PercentValue("+", medDmgValue);
 		}
 		
 		return result;
