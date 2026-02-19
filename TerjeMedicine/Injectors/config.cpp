@@ -209,7 +209,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AMFITALICYNE";
 		medAntidepresantLevel=3;
-		medAntidepresantTimer=520;
+		medAntidepresantTimeSec=520;
 		overdosedIncrement=0.6;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_bluered_co.paa"};
 	};

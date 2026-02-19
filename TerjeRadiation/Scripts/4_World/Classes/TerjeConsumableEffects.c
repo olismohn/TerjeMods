@@ -4,29 +4,18 @@ modded class TerjeConsumableEffects
 	{
 		super.TerjeApplyPositiveEffects(classname, player, amount, perkPharmacMod);
 		
-		int medLevel;
-		float medValue;
-		float medTimeSec;
-		
-		int medActiveLevel;
-		float medActiveValue;
-		float medActiveTimeSec;
-		
-		int MaxTimeSec;
-		float ActiveTimeSec;
-		
-		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
+		int medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
 		if (medLevel > 0)
 		{
-			medActiveLevel = 0;
-			medActiveTimeSec = 0;
+			int medActiveLevel = 0;
+			float medActiveTimeSec = 0;
 			player.GetTerjeStats().GetAntirad(medActiveLevel, medActiveTimeSec);
 			
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
+			float medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntirad");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				int MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntirad");
+				float ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
 				player.GetTerjeStats().SetAntirad(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
 			}
 		}
@@ -36,38 +25,32 @@ modded class TerjeConsumableEffects
 	{
 		super.TerjeApplyNegativeEffects(classname, player, amount);
 		
-		float medDmgValue;
-		
-		medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
+		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
 		if (medDmgValue != 0)
 		{
 			player.GetTerjeStats().SetRadiationValue(player.GetTerjeStats().GetRadiationValue() + (medDmgValue * amount));
 		}
 	}
 	
-	override string Describe(EntityAI entity, string classname)
+	override string TerjeDescribePositiveEffects(string classname)
 	{
-		string result = super.Describe(entity, classname);
-		int medLevel;
-		float medValue;
-		float medTimeSec;
+		string result = super.TerjeDescribePositiveEffects(classname);
 		
-		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimer" );
-		medValue = GetTerjeGameConfig().ConfigGetInt( classname + " medAntiradLevel" );
-		if (medValue > 0 && medTimeSec > 0)
-		{
-			result += "#STR_TERJERAD_EFFECT_RADPROTECT " + COLOR_GREEN + medValue + TimeValue(medTimeSec);			
-		}
+		result += TerjeGetEffectString("LevelTime", "Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
 		
-		float medDmgValue;
-		medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
-		if (medDmgValue > 0)
+		return result;
+	}
+	
+	override string TerjeDescribeNegativeEffects(string classname)
+	{
+		string result = super.TerjeDescribeNegativeEffects(classname);
+		
+		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
+		if (medDmgValue != 0)
 		{
-			result += "#STR_TERJERAD_EFFECT_RADIATION " + COLOR_GREEN + PercentValue("-", medDmgValue);
-		}
-		else if (medDmgValue < 0)
-		{
-			result += "#STR_TERJERAD_EFFECT_RADIATION " + COLOR_RED + PercentValue("+", medDmgValue);
+			bool badEffect = false;
+			if (medDmgValue < 0) badEffect = true;
+			result += PercentValue(medDmgValue, badEffect) + "#STR_TERJERAD_EFFECT_RADIATION " + NEXT_LINE;
 		}
 		
 		return result;

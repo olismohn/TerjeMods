@@ -244,7 +244,7 @@ class CfgVehicles
 	{
 		medicalItem=1;
 		overdosedIncrement = 0.01;
-		medImmunityGainForce=1;
+		medImmunityGainValue=1;
 		medImmunityGainTimeSec=120;
 		medImmunityGainMaxTimeSec=1800;
 	};

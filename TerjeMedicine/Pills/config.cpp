@@ -298,7 +298,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_ADEPRESS";
 		medAntidepresantLevel=1;
-		medAntidepresantTimer=150;
+		medAntidepresantTimeSec=150;
 		overdosedIncrement=0.2;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_5_co.paa"};
 	};
@@ -307,7 +307,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_B190";
 		medAntiradLevel=1;
-		medAntiradTimer=140;
+		medAntiradTimeSec=140;
 		overdosedIncrement=0.3;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_6_co.paa"};
 	};
@@ -451,7 +451,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_POTASIUM_IODIDE";
 		medAntiradLevel=1;
-		medAntiradTimer=60;
+		medAntiradTimeSec=60;
 		overdosedIncrement=0.2;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_6_co.paa"};
 	};
@@ -460,7 +460,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_HEXACYANOFERRATE";
 		medAntiradLevel=1;
-		medAntiradTimer=120;
+		medAntiradTimeSec=120;
 		overdosedIncrement=0.3;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_7_co.paa"};
 	};
@@ -469,7 +469,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_MEXAMINE";
 		medAntiradLevel=2;
-		medAntiradTimer=25;
+		medAntiradTimeSec=25;
 		overdosedIncrement=0.75;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_8_co.paa"};
 	};
@@ -478,7 +478,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AGTEMINOL";
 		medAntidepresantLevel=1;
-		medAntidepresantTimer=120;
+		medAntidepresantTimeSec=120;
 		overdosedIncrement=0.2;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_9_co.paa"};
 	};
@@ -487,7 +487,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_VANLAFAXINE";
 		medAntidepresantLevel=1;
-		medAntidepresantTimer=250;
+		medAntidepresantTimeSec=250;
 		overdosedIncrement=0.3;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\circle_10_co.paa"};
 	};

@@ -714,12 +714,12 @@ modded class BleedingSourcesManagerServer
 						// Mind (mental) damage. For Stalker PSI mutants
 						psiDamageChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%
 						psiDamageValue=0.0; // Mind damage per second (10 for example)
-						psiDamageTime=0.0; // Time of effect in seconds (5 for example)
+						psiDamageTimeSec=0.0; // Time of effect in seconds (5 for example)
 						
 						// Sleeping damage.
 						sleepDamageChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%
 						sleepDamageValue=0.0; // Sleeping damage per second (10 for example)
-						sleepDamageTime=0.0; // Time of effect in seconds (5 for example)
+						sleepDamageTimeSec=0.0; // Time of effect in seconds (5 for example)
 		
 						// Pain
 						painChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%

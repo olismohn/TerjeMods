@@ -34,7 +34,7 @@ class CfgVehicles
 		weight=60;
 		soundImpactType="plastic";
 		medAntiradLevel=3;
-		medAntiradTimer=600;
+		medAntiradTimeSec=600;
 		medAntiradMaxTimeSec=1800;
 		overdosedIncrement = 0.75;
 		medicalItem=1;

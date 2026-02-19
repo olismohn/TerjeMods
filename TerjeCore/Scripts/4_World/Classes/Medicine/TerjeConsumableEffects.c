@@ -11,29 +11,37 @@ class TerjeConsumableEffects
 	{
 		return COLOR_END + "(" + (int)(value) + " sec)" + NEXT_LINE;
 	}
-	private string LevelValue(float value)
+	private string LevelValue(float value, bool badEffect)
 	{
-		return COLOR_END + "(" + (int)(value) + " lvl)" + NEXT_LINE;
+		string color = COLOR_GREEN;
+		if (badEffect)
+		{
+			color = COLOR_RED;
+		}
+		return "#STR_TERJECORE_EFFECT_LEVEL_0 " + color + (int)(value) + COLOR_END + "#STR_TERJECORE_EFFECT_LEVEL_1 ";
 	}
-	private string HPValue(string sign, float value)
+	private string PercentValue(float value, bool badEffect)
 	{
-		return sign + (int)(value) + " HP" + COLOR_END + NEXT_LINE;
+		string sign = "-";
+		string color = COLOR_GREEN;
+		if (badEffect)
+		{
+			sign = "+";
+			color = COLOR_RED;
+		}
+		return color + sign + (int)(value * 100) + " %" + COLOR_END + " ";
 	}
-	private string PercentValue(string sign, float value)
+	private string StatValue(float value, string stat)
 	{
-		return sign + (int)(value * 100) + " %" + COLOR_END + NEXT_LINE;
-	}
-	private string EXPValue(string sign, float value)
-	{
-		return sign + (int)(value) + " EXP" + COLOR_END + NEXT_LINE;
-	}
-	private string calValue(string sign, float value)
-	{
-		return sign + (int)(value) + " cal" + COLOR_END + NEXT_LINE;
-	}
-	private string mlValue(string sign, float value)
-	{
-		return sign + (int)(value) + " ml" + COLOR_END + NEXT_LINE;
+		string sign = "";
+		string color = COLOR_RED;
+		if (value > 0 )
+		{
+			sign = "+";
+			if (stat == "EXP") color = COLOR_BLUE;
+			else color = COLOR_GREEN;
+		}
+		return color + sign + (int)(value) + COLOR_END + " " + stat + NEXT_LINE;
 	}
 	private string NoValue()
 	{
@@ -110,7 +118,6 @@ class TerjeConsumableEffects
 			}
 			TerjeApplyVanillaEffects(classname, player, amount);
 			TerjeApplyPositiveEffects(classname, player, amount, perkPharmacMod);
-			TerjeApplyVacineEffects(classname, player, amount, perkPharmacMod);
 			TerjeApplyNegativeEffects(classname, player, amount);
 		}
 	}
@@ -152,11 +159,6 @@ class TerjeConsumableEffects
 		
 	}
 	
-	void TerjeApplyVacineEffects(string classname, PlayerBase player, float amount, float perkPharmacMod)
-	{
-		
-	}
-	
 	void TerjeApplyNegativeEffects(string classname, PlayerBase player, float amount)
 	{
 		
@@ -165,89 +167,158 @@ class TerjeConsumableEffects
 	string Describe(EntityAI entity, string classname)
 	{
 		string result = "";
-		ItemBase item = ItemBase.Cast(entity);
 		
 		array<ref TerjeSkillCfg> skills();
 		GetTerjeSkillsRegistry().GetSkills(skills);
 		foreach (ref TerjeSkillCfg skill : skills)
 		{
 			float skillIncrement = GetTerjeGameConfig().ConfigGetFloat( classname + " " + skill.GetId() + "SkillIncrement" );
-			if (skillIncrement >= 1)
+			if (skillIncrement != 0)
 			{
-				result += skill.GetDisplayName() + " " + COLOR_BLUE + EXPValue("+", skillIncrement);
+				result += skill.GetDisplayName() + " " + StatValue(skillIncrement, "EXP");
 			}
 		}
 		
-		float healthDmg = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
-		if (healthDmg > 0)
+		result += TerjeDescribeVanillaEffects(entity, classname);
+		result += TerjeDescribeNegativeEffects(classname);
+		result += TerjeDescribePositiveEffects(classname);
+		
+		return result;
+	}
+	
+	string TerjeDescribeVanillaEffects(EntityAI entity, string classname)
+	{
+		string result = "";
+		ItemBase item = ItemBase.Cast(entity);
+		float vanillaStat;
+		
+		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
+		if (vanillaStat != 0)
 		{
-			result += "#STR_TERJECORE_EFFECT_HEALTH " + COLOR_GREEN + HPValue("+", healthDmg);
-		}
-		else if (healthDmg < 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_HEALTH " + COLOR_RED + HPValue("-", healthDmg);
+			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_HEALTH");
 		}
 		
-		float bloodDmg = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
-		if (bloodDmg > 0)
+		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
+		if (vanillaStat != 0)
 		{
-			result += "#STR_TERJECORE_EFFECT_BLOOD " + COLOR_GREEN + HPValue("+", bloodDmg);
-		}
-		else if (bloodDmg < 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_BLOOD " + COLOR_RED + HPValue("-", bloodDmg);
+			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_BLOOD");
 		}
 		
-		float shockDmg = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
-		if (shockDmg > 0)
+		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
+		if (vanillaStat != 0)
 		{
-			result += "#STR_TERJECORE_EFFECT_SHOCK " + COLOR_GREEN + HPValue("+", shockDmg);
-		}
-		else if (shockDmg < 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_SHOCK " + COLOR_RED + HPValue("-", shockDmg);
+			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_SHOCK");
 		}
 		
-		float nutritionEnergy = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition energy" );
-		if (nutritionEnergy == 0 && item != null && item.GetFoodStage())
+		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition energy" );
+		if (vanillaStat == 0 && item != null && item.GetFoodStage())
 		{
-			nutritionEnergy = FoodStage.GetEnergy(item.GetFoodStage());
+			vanillaStat = FoodStage.GetEnergy(item.GetFoodStage());
+		}
+		if (vanillaStat == 0)
+		{
+			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
+		}
+		if (vanillaStat != 0)
+		{
+			result += "#STR_TERJECORE_EFFECT_ENERGY " + StatValue(vanillaStat, "cal");
 		}
 		
-		if (nutritionEnergy == 0)
+		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition water" );
+		if (vanillaStat == 0 && item != null && item.GetFoodStage())
 		{
-			nutritionEnergy = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
+			vanillaStat = FoodStage.GetWater(item.GetFoodStage());
 		}
-		
-		if (nutritionEnergy > 0)
+		if (vanillaStat == 0)
 		{
-			result += "#STR_TERJECORE_EFFECT_ENERGY " + COLOR_GREEN + calValue("+", nutritionEnergy);
+			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
 		}
-		else if (nutritionEnergy < 0)
+		if (vanillaStat != 0)
 		{
-			result += "#STR_TERJECORE_EFFECT_ENERGY " + COLOR_RED + calValue("-", nutritionEnergy);
-		}
-		
-		float nutritionWater = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition water" );
-		if (nutritionWater == 0 && item != null && item.GetFoodStage())
-		{
-			nutritionWater = FoodStage.GetWater(item.GetFoodStage());
-		}
-		
-		if (nutritionWater == 0)
-		{
-			nutritionWater = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
-		}
-		
-		if (nutritionWater > 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_WATER " + COLOR_GREEN + mlValue("+", nutritionWater);
-		}
-		else if (nutritionWater < 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_WATER " + COLOR_RED + mlValue("-", nutritionWater);
+			result += "#STR_TERJECORE_EFFECT_WATER " + StatValue(vanillaStat, "ml");
 		}
 		
 		return result;
+	}
+	string TerjeDescribePositiveEffects(string classname)
+	{
+		string result = "";
+		return result;
+	}
+	string TerjeDescribeNegativeEffects(string classname)
+	{
+		string result = "";
+		return result;
+	}
+	string TerjeGetEffectString(string base, string medication, string effect, string classname)
+	{
+		int medLevel;
+		float medValue;
+		float medTimeSec;
+		
+		if (base == "Level")
+		{
+			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " " + medication + "Level" );
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " " + medication + "TimeSec" );
+			if (medLevel > 0 && medTimeSec > 0)
+			{
+				return LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
+			}
+		}
+		if (base == "DamageLevel")
+		{
+			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Set" );
+			if (medLevel > 0)
+			{
+				return LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
+			}
+		}
+		else if (base == "Time")
+		{
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
+			if (medTimeSec > 0)
+			{
+				if (medication == "ImmunityGain") 
+				{
+					medValue = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Value" );
+					TerjeLog_Info("medImmunityGainValue=" + medValue + "; medImmunityGainTimeSec=" + medTimeSec);
+				}
+				return COLOR_YELLOW + effect + " " + TimeValue(medTimeSec);
+			}
+		}
+		else if (base == "DamageTime")
+		{
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "DamageTimeSec");
+			if (medTimeSec > 0)
+			{
+				return COLOR_RED + effect + " " + TimeValue(medTimeSec);
+			}
+		}
+		else if (base == "Increment")
+		{
+			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "Increment");
+			if (medValue > 0)
+			{
+				return COLOR_RED + effect + " " + NoValue();
+			}
+		}
+		else if (base == "Percent")
+		{
+			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " " + medication + "Increment");
+			if (medValue > 0)
+			{
+				return PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
+			}
+		}
+		else if (base == "Contussion")
+		{
+			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussion" + medication);
+			if (medValue > 0)
+			{
+				return COLOR_RED + effect + " " + NoValue();
+			}
+		}
+		
+		return;
 	}
 }
