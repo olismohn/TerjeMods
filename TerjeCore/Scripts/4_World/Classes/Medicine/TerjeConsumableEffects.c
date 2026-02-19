@@ -9,7 +9,7 @@ class TerjeConsumableEffects
 	
 	private string TimeValue(float value)
 	{
-		return COLOR_END + "(" + (int)(value) + " sec)" + NEXT_LINE;
+		return "(" + (int)(value) + " sec)" + NEXT_LINE;
 	}
 	private string LevelValue(float value, bool badEffect)
 	{
@@ -62,7 +62,7 @@ class TerjeConsumableEffects
 	
 	int TerjeGetMaxTimeSec(string classname, string configname)
 	{
-		int MaxTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " " + configname + "MaxTimeSec" )
+		int MaxTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " " + configname + "MaxTimeSec" );
 		if ( MaxTimeSec <= 0) return 1800;
 		
 		return MaxTimeSec;
@@ -258,8 +258,8 @@ class TerjeConsumableEffects
 		
 		if (base == "Level")
 		{
-			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " " + medication + "Level" );
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " " + medication + "TimeSec" );
+			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Level" );
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
 			if (medLevel > 0 && medTimeSec > 0)
 			{
 				return LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
@@ -273,7 +273,7 @@ class TerjeConsumableEffects
 				return LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
 			}
 		}
-		else if (base == "Time")
+		if (base == "Time")
 		{
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
 			if (medTimeSec > 0)
@@ -283,18 +283,18 @@ class TerjeConsumableEffects
 					medValue = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Value" );
 					TerjeLog_Info("medImmunityGainValue=" + medValue + "; medImmunityGainTimeSec=" + medTimeSec);
 				}
-				return COLOR_YELLOW + effect + " " + TimeValue(medTimeSec);
+				return COLOR_YELLOW + effect + " " + COLOR_END + TimeValue(medTimeSec);
 			}
 		}
-		else if (base == "DamageTime")
+		if (base == "DamageTime")
 		{
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "DamageTimeSec");
 			if (medTimeSec > 0)
 			{
-				return COLOR_RED + effect + " " + TimeValue(medTimeSec);
+				return COLOR_RED + effect + " " + COLOR_END + TimeValue(medTimeSec);
 			}
 		}
-		else if (base == "Increment")
+		if (base == "Increment")
 		{
 			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "Increment");
 			if (medValue > 0)
@@ -302,7 +302,7 @@ class TerjeConsumableEffects
 				return COLOR_RED + effect + " " + NoValue();
 			}
 		}
-		else if (base == "Percent")
+		if (base == "Percent")
 		{
 			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " " + medication + "Increment");
 			if (medValue > 0)
@@ -310,7 +310,7 @@ class TerjeConsumableEffects
 				return PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
 			}
 		}
-		else if (base == "Contussion")
+		if (base == "Contussion")
 		{
 			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussion" + medication);
 			if (medValue > 0)
@@ -319,6 +319,6 @@ class TerjeConsumableEffects
 			}
 		}
 		
-		return;
+		return "";
 	}
 }

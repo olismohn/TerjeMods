@@ -40,7 +40,7 @@ modded class TerjeConsumableEffects
 			medActiveTimeSec = 0;
 			player.GetTerjeStats().GetAntibiotic(medActiveLevel, medActiveTimeSec);
 			
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibioticsTimeSec" );
+			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibioticTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
 				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntibiotics");

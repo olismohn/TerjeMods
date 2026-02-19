@@ -114,7 +114,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AMOXICLAV";
 		medAntibioticLevel=3;
-		medAntibioticsTimeSec=1800;
+		medAntibioticTimeSec=1800;
 		medAntisepsisTimeSec=300;
 		overdosedIncrement=0.6;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_blue_co.paa"};
@@ -166,7 +166,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_TOPOIZOMERAZA";
 		medAntibioticLevel=3;
-		medAntibioticsTimeSec=900;
+		medAntibioticTimeSec=900;
 		medAntisepsisTimeSec=600;
 		overdosedIncrement=0.65;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Injectors\data\injector_pinkred_co.paa"};

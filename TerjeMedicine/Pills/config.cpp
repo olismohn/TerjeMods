@@ -250,7 +250,7 @@ class CfgVehicles
 	{
 		descriptionShort="#STR_TERJEMED_TABLETS_DESC";
 		medAntibioticLevel=1;
-		medAntibioticsTimeSec=300;
+		medAntibioticTimeSec=300;
 		medSkillExpAddToSelf=10;
 		overdosedIncrement=0.45;
 		medicalItem=1;
@@ -280,7 +280,7 @@ class CfgVehicles
 		scope=2;
 		displayName="$STR_CfgVehicles_TetracyclineAntibiotics0";
 		medAntibioticLevel=1;
-		medAntibioticsTimeSec=300;
+		medAntibioticTimeSec=300;
 		overdosedIncrement=0.45;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_3_co.paa"};
 	};
@@ -339,7 +339,7 @@ class CfgVehicles
 		medPainkillerTimeSec=200;
 		overdosedIncrement=0.45;
 		medAntibioticLevel=1;
-		medAntibioticsTimeSec=120;
+		medAntibioticTimeSec=120;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_10_co.paa"};
 	};
 	class TerjePillsIbuprofen: TerjePills_Capsule
@@ -349,7 +349,7 @@ class CfgVehicles
 		medPainkillerLevel=1;
 		medPainkillerTimeSec=600;
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=300;
+		medAntibioticTimeSec=300;
 		overdosedIncrement=0.35;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\capsule_11_co.paa"};
 	};
@@ -360,7 +360,7 @@ class CfgVehicles
 		medPainkillerLevel=1;
 		medPainkillerTimeSec=350;
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=300;
+		medAntibioticTimeSec=300;
 		overdosedIncrement=0.52;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_6_co.paa"};
 	};
@@ -369,7 +369,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AMOXICLAV";
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=1200;
+		medAntibioticTimeSec=1200;
 		overdosedIncrement=0.75;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_5_co.paa"};
 	};
@@ -378,7 +378,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_PIPERACYLIN";
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=1100;
+		medAntibioticTimeSec=1100;
 		overdosedIncrement=0.45;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_4_co.paa"};
 	};
@@ -387,7 +387,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AMIBAKTAM";
 		medAntibioticLevel=1;
-		medAntibioticsTimeSec=60;
+		medAntibioticTimeSec=60;
 		overdosedIncrement=0.05;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Pills\data\oval_3_co.paa"};
 	};

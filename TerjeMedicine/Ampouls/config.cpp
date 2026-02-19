@@ -86,7 +86,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_AMOXIVAN";
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=900;
+		medAntibioticTimeSec=900;
 		overdosedIncrement=0.3;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Ampouls\data\ampoule_pink_co.paa"};
 	};
@@ -215,7 +215,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_KETAROL";
 		medAntibioticLevel=2;
-		medAntibioticsTimeSec=1200;
+		medAntibioticTimeSec=1200;
 		medPainkillerLevel=1;
 		medPainkillerTimeSec=1200;
 		overdosedIncrement=0.5;
@@ -227,7 +227,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_FLEMOCLAV";
 		medAntibioticLevel=3;
-		medAntibioticsTimeSec=1200;
+		medAntibioticTimeSec=1200;
 		medAntisepsisTimeSec=1200;
 		overdosedIncrement=0.8;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Ampouls\data\ampoule_toxicgrey_co.paa"};
@@ -238,7 +238,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#STR_TERJEMED_IMIPENEM";
 		medAntibioticLevel=3;
-		medAntibioticsTimeSec=900;
+		medAntibioticTimeSec=900;
 		medAntisepsisTimeSec=900;
 		overdosedIncrement=0.7;
 		hiddenSelectionsTextures[]={"TerjeMedicine\Ampouls\data\ampoule_toxicgreen_co.paa"};
