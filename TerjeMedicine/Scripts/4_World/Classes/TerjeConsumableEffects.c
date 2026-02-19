@@ -345,9 +345,6 @@ modded class TerjeConsumableEffects
 	
 	override string TerjeDescribePositiveEffects(string classname)
 	{
-		int medLevel;
-		float medValue;
-		float medTimeSec;
 		string result = super.TerjeDescribePositiveEffects(classname);
 		
 		result += TerjeGetEffectString("Level", "Painkiller", "#STR_TERJEMED_EFFECT_PAINKILLER", classname);
@@ -379,7 +376,6 @@ modded class TerjeConsumableEffects
 	
 	override string TerjeDescribeNegativeEffects(string classname)
 	{
-		float medDmgValue;
 		string result = super.TerjeDescribeNegativeEffects(classname);
 		
 		result += TerjeGetEffectString("Percent", "overdosed", "#STR_TERJEMED_EFFECT_OVERDOSE", classname);
