@@ -19,7 +19,7 @@ modded class TerjeConsumableEffects
 		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medPainkillerLevel" );
 		if (medLevel > 0)
 		{
-			TerjeSkillModification(medLevel, "anestlog", out medLevel);
+			TerjeSkillModification(medLevel, player, "anestlog", medLevel);
 			
 			medActiveLevel = 0;
 			medActiveTimeSec = 0;
@@ -37,7 +37,7 @@ modded class TerjeConsumableEffects
 		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medAntibioticLevel" );
 		if (medLevel > 0)
 		{
-			TerjeSkillModification(medLevel, "expantib", out medLevel);
+			TerjeSkillModification(medLevel, player, "expantib", medLevel);
 			
 			medActiveLevel = 0;
 			medActiveTimeSec = 0;
@@ -55,7 +55,7 @@ modded class TerjeConsumableEffects
 		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medRabiesAntibioticLevel" );
 		if (medLevel > 0)
 		{
-			TerjeSkillModification(medLevel, "expantib", out medLevel);
+			TerjeSkillModification(medLevel, player, "expantib", medLevel);
 			
 			medActiveLevel = 0;
 			medActiveTimeSec = 0;
@@ -362,9 +362,9 @@ modded class TerjeConsumableEffects
 	{
 		string result = super.Describe(entity, classname);
 		
-		result += TerjeDescribePositiveEffects(string classname);
-		result += TerjeDescribeVacineEffects(string classname);
-		result += TerjeDescribeNegativeEffects(string classname);
+		result += TerjeDescribePositiveEffects(classname);
+		result += TerjeDescribeVacineEffects(classname);
+		result += TerjeDescribeNegativeEffects(classname);
 		
 		return result;
 	}
