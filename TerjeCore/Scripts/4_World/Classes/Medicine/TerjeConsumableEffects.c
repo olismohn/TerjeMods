@@ -40,7 +40,7 @@ class TerjeConsumableEffects
 		return COLOR_END + NEXT_LINE;
 	}
 	
-	void TerjeSkillModification(int inLevel, string perkName, out int outLevel)
+	void TerjeSkillModification(int inLevel, PlayerBase player, string perkName, out int outLevel)
 	{
 		outLevel = inLevel;
 		if (player.GetTerjeSkills())
