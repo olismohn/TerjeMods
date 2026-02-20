@@ -343,58 +343,58 @@ modded class TerjeConsumableEffects
 		super.TerjeApplyNegativeEffects(classname, player, amount);
 	}
 	
-	override string TerjeDescribePositiveEffects(string classname)
+	override private string TerjeDescribePositiveEffects(string classname)
 	{
 		string result = super.TerjeDescribePositiveEffects(classname);
 		
-		result += TerjeGetEffectString("Level", "Painkiller", "#STR_TERJEMED_EFFECT_PAINKILLER", classname);
-		result += TerjeGetEffectString("Level", "Antibiotic", "#STR_TERJEMED_EFFECT_ANTIBIOTIC", classname);
-		result += TerjeGetEffectString("Level", "RabiesAntibiotic", "#STR_TERJEMED_EFFECT_RABIESCURE", classname);
-		result += TerjeGetEffectString("Level", "Antipoison", "#STR_TERJEMED_EFFECT_ANTIPOISON", classname);
-		result += TerjeGetEffectString("Level", "Antibiohazard", "#STR_TERJEMED_EFFECT_ANTIBIOHAZARD", classname);
-		result += TerjeGetEffectString("Level", "Antidepresant", "#STR_TERJEMED_EFFECT_ANTIDEPRESANT", classname);
+		result += TerjeGetEffectString_Level("Painkiller", "#STR_TERJEMED_EFFECT_PAINKILLER", classname);
+		result += TerjeGetEffectString_Level("Antibiotic", "#STR_TERJEMED_EFFECT_ANTIBIOTIC", classname);
+		result += TerjeGetEffectString_Level("RabiesAntibiotic", "#STR_TERJEMED_EFFECT_RABIESCURE", classname);
+		result += TerjeGetEffectString_Level("Antipoison", "#STR_TERJEMED_EFFECT_ANTIPOISON", classname);
+		result += TerjeGetEffectString_Level("Antibiohazard", "#STR_TERJEMED_EFFECT_ANTIBIOHAZARD", classname);
+		result += TerjeGetEffectString_Level("Antidepresant", "#STR_TERJEMED_EFFECT_ANTIDEPRESANT", classname);
 		
-		result += TerjeGetEffectString("Time", "BloodHemostatic", "#STR_TERJEMED_EFFECT_HEMOSTATIC", classname);
-		result += TerjeGetEffectString("Time", "BloodRegen", "#STR_TERJEMED_EFFECT_BLOODREGEN", classname);
-		result += TerjeGetEffectString("Time", "ImmunityGain", "#STR_TERJEMED_EFFECT_IMMUNGAIN", classname);
+		result += TerjeGetEffectString_Time("BloodHemostatic", "#STR_TERJEMED_EFFECT_HEMOSTATIC", classname);
+		result += TerjeGetEffectString_Time("BloodRegen", "#STR_TERJEMED_EFFECT_BLOODREGEN", classname);
+		result += TerjeGetEffectString_Time("ImmunityGain", "#STR_TERJEMED_EFFECT_IMMUNGAIN", classname);
 		
-	//	result += TerjeGetEffectString("Time", "SleepingIncrement", "#STR_TERJEMED_EFFECT_", classname);
+	//	result += TerjeGetEffectString_Time("SleepingIncrement", "#STR_TERJEMED_EFFECT_", classname);
 		
-		result += TerjeGetEffectString("Time", "Healthgain", "#STR_TERJEMED_EFFECT_HEALTHREGEN", classname);
-		result += TerjeGetEffectString("Time", "ZAntidot", "#STR_TERJEMED_EFFECT_ZANTIDOT", classname);
-		result += TerjeGetEffectString("Time", "Antisepsis", "#STR_TERJEMED_EFFECT_ANTISEPSIS", classname);
-		result += TerjeGetEffectString("Time", "ConcussionHeal", "#STR_TERJEMED_EFFECT_CONTUSIONCURE", classname);
-		result += TerjeGetEffectString("Time", "HematomaHeal", "#STR_TERJEMED_EFFECT_HEMATOMA", classname);
-		result += TerjeGetEffectString("Time", "Adrenalin", "#STR_TERJEMED_EFFECT_ADRENALIN", classname);
+		result += TerjeGetEffectString_Time("Healthgain", "#STR_TERJEMED_EFFECT_HEALTHREGEN", classname);
+		result += TerjeGetEffectString_Time("ZAntidot", "#STR_TERJEMED_EFFECT_ZANTIDOT", classname);
+		result += TerjeGetEffectString_Time("Antisepsis", "#STR_TERJEMED_EFFECT_ANTISEPSIS", classname);
+		result += TerjeGetEffectString_Time("ConcussionHeal", "#STR_TERJEMED_EFFECT_CONTUSIONCURE", classname);
+		result += TerjeGetEffectString_Time("HematomaHeal", "#STR_TERJEMED_EFFECT_HEMATOMA", classname);
+		result += TerjeGetEffectString_Time("Adrenalin", "#STR_TERJEMED_EFFECT_ADRENALIN", classname);
 		
-		result += TerjeGetEffectString("Time", "InfluenzaVacine", "#STR_TERJEMED_EFFECT_INFVACINE", classname);
-		result += TerjeGetEffectString("Time", "ZVirusVacine", "#STR_TERJEMED_EFFECT_ZEDVACINE", classname);
-		result += TerjeGetEffectString("Time", "RabiesVacine", "#STR_TERJEMED_EFFECT_RABIESVACCINE", classname);
+		result += TerjeGetEffectString_Time("InfluenzaVacine", "#STR_TERJEMED_EFFECT_INFVACINE", classname);
+		result += TerjeGetEffectString_Time("ZVirusVacine", "#STR_TERJEMED_EFFECT_ZEDVACINE", classname);
+		result += TerjeGetEffectString_Time("RabiesVacine", "#STR_TERJEMED_EFFECT_RABIESVACCINE", classname);
 		
 		return result;
 	}
 	
-	override string TerjeDescribeNegativeEffects(string classname)
+	override private string TerjeDescribeNegativeEffects(string classname)
 	{
 		string result = super.TerjeDescribeNegativeEffects(classname);
 		
-		result += TerjeGetEffectString("Percent", "overdosed", "#STR_TERJEMED_EFFECT_OVERDOSE", classname);
-		result += TerjeGetEffectString("Percent", "biohazard", "#STR_TERJEMED_EFFECT_BIOHAZARD", classname);
+		result += TerjeGetEffectString_Percent("overdosed", "#STR_TERJEMED_EFFECT_OVERDOSE", classname);
+		result += TerjeGetEffectString_Percent("biohazard", "#STR_TERJEMED_EFFECT_BIOHAZARD", classname);
 		
-		result += TerjeGetEffectString("Contussion", "Light", "#STR_TERJEMED_EFFECT_DMG_CONTLIGHT", classname);
-		result += TerjeGetEffectString("Contussion", "Heavy", "#STR_TERJEMED_EFFECT_DMG_CONTHEAVY", classname);
+		result += TerjeGetEffectString_Contussion("Light", "#STR_TERJEMED_EFFECT_DMG_CONTLIGHT", classname);
+		result += TerjeGetEffectString_Contussion("Heavy", "#STR_TERJEMED_EFFECT_DMG_CONTHEAVY", classname);
 		
-		result += TerjeGetEffectString("Increment", "Hematomas", "#STR_TERJEMED_EFFECT_DMG_HEMATOMA", classname);
-		result += TerjeGetEffectString("Increment", "FoodPoison", "#STR_TERJEMED_EFFECT_DMG_FOODPOISON", classname);
-		result += TerjeGetEffectString("Increment", "InfuenzaInfection", "#STR_TERJEMED_EFFECT_DMG_INFLUENZA", classname);
-		result += TerjeGetEffectString("Increment", "ZombieVirus", "#STR_TERJEMED_EFFECT_DMG_ZOMBIE", classname);
-		result += TerjeGetEffectString("Increment", "SepsisInfection", "#STR_TERJEMED_EFFECT_DMG_SEPSIS", classname);
-		result += TerjeGetEffectString("Increment", "RabiesVirus", "#STR_TERJEMED_EFFECT_DMG_RABIES", classname);
+		result += TerjeGetEffectString_Increment("Hematomas", "#STR_TERJEMED_EFFECT_DMG_HEMATOMA", classname);
+		result += TerjeGetEffectString_Increment("FoodPoison", "#STR_TERJEMED_EFFECT_DMG_FOODPOISON", classname);
+		result += TerjeGetEffectString_Increment("InfuenzaInfection", "#STR_TERJEMED_EFFECT_DMG_INFLUENZA", classname);
+		result += TerjeGetEffectString_Increment("ZombieVirus", "#STR_TERJEMED_EFFECT_DMG_ZOMBIE", classname);
+		result += TerjeGetEffectString_Increment("SepsisInfection", "#STR_TERJEMED_EFFECT_DMG_SEPSIS", classname);
+		result += TerjeGetEffectString_Increment("RabiesVirus", "#STR_TERJEMED_EFFECT_DMG_RABIES", classname);
 		
-		result += TerjeGetEffectString("DamageTime", "Psi", "#STR_TERJEMED_EFFECT_DMG_PSI", classname);
-		result += TerjeGetEffectString("DamageTime", "Sleep", "#STR_TERJEMED_EFFECT_DMG_SLEEP", classname);
+		result += TerjeGetEffectString_DamageTime("Psi", "#STR_TERJEMED_EFFECT_DMG_PSI", classname);
+		result += TerjeGetEffectString_DamageTime("Sleep", "#STR_TERJEMED_EFFECT_DMG_SLEEP", classname);
 		
-		result += TerjeGetEffectString("DamageLevel", "Pain", "#STR_TERJEMED_EFFECT_DMG_PAIN", classname);
+		result += TerjeGetEffectString_DamageLevel("Pain", "#STR_TERJEMED_EFFECT_DMG_PAIN", classname);
 		
 		return result;
 	}
