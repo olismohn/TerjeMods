@@ -439,12 +439,12 @@ modded class ItemBase
 			OnTerjeRPC(sender, metaData.param1, ctx);
 		}
 	}
-		
+	
 	void OnTerjeRPC(PlayerIdentity sender, string id, ParamsReadContext ctx)
 	{
 		
 	}
-		
+	
 	void TerjeSendToClient(string id, PlayerIdentity recipient, Param params)
 	{
 		if (GetGame() && GetGame().IsDedicatedServer())
