@@ -32,16 +32,16 @@ modded class TerjeConsumableEffects
 		}
 	}
 	
-	override string TerjeDescribePositiveEffects(string classname)
+	override private string TerjeDescribePositiveEffects(string classname)
 	{
 		string result = super.TerjeDescribePositiveEffects(classname);
 		
-		result += TerjeGetEffectString("LevelTime", "Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
+		result += TerjeGetEffectString_LevelTime("Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
 		
 		return result;
 	}
 	
-	override string TerjeDescribeNegativeEffects(string classname)
+	override private string TerjeDescribeNegativeEffects(string classname)
 	{
 		string result = super.TerjeDescribeNegativeEffects(classname);
 		
