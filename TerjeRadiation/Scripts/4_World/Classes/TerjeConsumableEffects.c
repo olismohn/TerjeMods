@@ -36,7 +36,7 @@ modded class TerjeConsumableEffects
 	{
 		string result = super.TerjeDescribePositiveEffects(classname);
 		
-		result += TerjeGetEffectString_LevelTime("Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
+		result += TerjeGetEffectString_Level("Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
 		
 		return result;
 	}
