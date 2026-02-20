@@ -21,10 +21,10 @@ class TerjeConsumableEffects
 	
 	int TerjeGetMaxTimeSec(string classname, string configname)
 	{
-		int MaxTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " " + configname + "MaxTimeSec" );
-		if ( MaxTimeSec <= 0) return 1800;
+		int medMaxTimeSec = GetTerjeGameConfig().ConfigGetInt( classname + " med" + configname + "MaxTimeSec" );
+		if ( medMaxTimeSec <= 0) return 1800;
 		
-		return MaxTimeSec;
+		return medMaxTimeSec;
 	}
 	
 	float TerjeGetActiveTimeSec(float activeTime, float activeTimeSec, float amount, float perkPharmacMod)
