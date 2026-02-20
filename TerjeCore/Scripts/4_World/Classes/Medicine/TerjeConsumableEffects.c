@@ -7,47 +7,6 @@ class TerjeConsumableEffects
 	const string COLOR_END = "</color>";
 	const string NEXT_LINE = "<br/>";
 	
-	private string TimeValue(float value)
-	{
-		return "(" + (int)(value) + " sec)" + NEXT_LINE;
-	}
-	private string LevelValue(float value, bool badEffect)
-	{
-		string color = COLOR_GREEN;
-		if (badEffect)
-		{
-			color = COLOR_RED;
-		}
-		return "#STR_TERJECORE_EFFECT_LEVEL_0 " + color + (int)(value) + COLOR_END + "#STR_TERJECORE_EFFECT_LEVEL_1 ";
-	}
-	private string PercentValue(float value, bool badEffect)
-	{
-		string sign = "-";
-		string color = COLOR_GREEN;
-		if (badEffect)
-		{
-			sign = "+";
-			color = COLOR_RED;
-		}
-		return color + sign + (int)(value * 100) + " %" + COLOR_END + " ";
-	}
-	private string StatValue(float value, string stat)
-	{
-		string sign = "";
-		string color = COLOR_RED;
-		if (value > 0 )
-		{
-			sign = "+";
-			if (stat == "EXP") color = COLOR_BLUE;
-			else color = COLOR_GREEN;
-		}
-		return color + sign + (int)(value) + COLOR_END + " " + stat + NEXT_LINE;
-	}
-	private string NoValue()
-	{
-		return COLOR_END + NEXT_LINE;
-	}
-	
 	void TerjeSkillModification(int inLevel, PlayerBase player, string perkName, out int outLevel)
 	{
 		outLevel = inLevel;
@@ -186,7 +145,7 @@ class TerjeConsumableEffects
 		return result;
 	}
 	
-	string TerjeDescribeVanillaEffects(EntityAI entity, string classname)
+	private string TerjeDescribeVanillaEffects(EntityAI entity, string classname)
 	{
 		string result = "";
 		ItemBase item = ItemBase.Cast(entity);
@@ -240,85 +199,140 @@ class TerjeConsumableEffects
 		
 		return result;
 	}
-	string TerjeDescribePositiveEffects(string classname)
+	
+	private string TerjeDescribePositiveEffects(string classname)
 	{
 		string result = "";
 		return result;
 	}
-	string TerjeDescribeNegativeEffects(string classname)
+	
+	private string TerjeDescribeNegativeEffects(string classname)
 	{
 		string result = "";
 		return result;
 	}
-	string TerjeGetEffectString(string base, string medication, string effect, string classname)
+	
+	private string TerjeGetEffectString_Level(string medication, string effect, string classname)
 	{
-		int medLevel;
-		float medValue;
-		float medTimeSec;
-		
-		if (base == "Level")
+		int medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Level" );
+		float medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
+		if (medLevel > 0 && medTimeSec > 0)
 		{
-			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Level" );
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
-			if (medLevel > 0 && medTimeSec > 0)
-			{
-				return LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
-			}
-		}
-		if (base == "DamageLevel")
-		{
-			medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Set" );
-			if (medLevel > 0)
-			{
-				return LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
-			}
-		}
-		if (base == "Time")
-		{
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
-			if (medTimeSec > 0)
-			{
-				if (medication == "ImmunityGain") 
-				{
-					medValue = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Value" );
-					TerjeLog_Info("medImmunityGainValue=" + medValue + "; medImmunityGainTimeSec=" + medTimeSec);
-				}
-				return COLOR_YELLOW + effect + " " + COLOR_END + TimeValue(medTimeSec);
-			}
-		}
-		if (base == "DamageTime")
-		{
-			medTimeSec = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "DamageTimeSec");
-			if (medTimeSec > 0)
-			{
-				return COLOR_RED + effect + " " + COLOR_END + TimeValue(medTimeSec);
-			}
-		}
-		if (base == "Increment")
-		{
-			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "Increment");
-			if (medValue > 0)
-			{
-				return COLOR_RED + effect + " " + NoValue();
-			}
-		}
-		if (base == "Percent")
-		{
-			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " " + medication + "Increment");
-			if (medValue > 0)
-			{
-				return PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
-			}
-		}
-		if (base == "Contussion")
-		{
-			medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussion" + medication);
-			if (medValue > 0)
-			{
-				return COLOR_RED + effect + " " + NoValue();
-			}
+			return LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
 		}
 		
 		return "";
 	}
+	
+	private string TerjeGetEffectString_DamageLevel(string medication, string effect, string classname)
+	{
+		int medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Set" );
+		if (medLevel > 0)
+		{
+			return LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
+		}
+		
+		return "";
+	}
+	
+	private string TerjeGetEffectString_Time(string medication, string effect, string classname)
+	{
+		float medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
+		if (medTimeSec > 0)
+		{
+			if (medication == "ImmunityGain") 
+			{
+				float medValue = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Value" );
+				TerjeLog_Info("medImmunityGainValue=" + medValue + "; medImmunityGainTimeSec=" + medTimeSec);
+			}
+			return COLOR_YELLOW + effect + COLOR_END + " " + TimeValue(medTimeSec);
+		}
+		
+		return "";
+	}
+	
+	private string TerjeGetEffectString_DamageTime(string medication, string effect, string classname)
+	{
+		float medTimeSec = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "DamageTimeSec");
+		if (medTimeSec > 0)
+		{
+			return COLOR_RED + effect + " " + COLOR_END + TimeValue(medTimeSec);
+		}
+		
+		return "";
+	}
+	
+	private string TerjeGetEffectString_Increment(string medication, string effect, string classname)
+	{
+		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "Increment");
+		if (medValue > 0)
+		{
+			return COLOR_RED + effect + " " + COLOR_END + NEXT_LINE;
+		}
+		
+		return "";
+	}
+	
+	private string TerjeGetEffectString_Percent(string medication, string effect, string classname)
+	{
+		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " " + medication + "Increment");
+		if (medValue > 0)
+		{
+			return PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
+		}
+		
+		return "";
+	}
+	
+	private string TerjeGetEffectString_Contussion(string medication, string effect, string classname)
+	{
+		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussion" + medication);
+		if (medValue > 0)
+		{
+			return COLOR_RED + effect + " " + COLOR_END + NEXT_LINE;
+		}
+		
+		return "";
+	}
+	
+	private string TimeValue(float value)
+	{
+		return "(" + (int)(value) + " sec)" + NEXT_LINE;
+	}
+	
+	private string LevelValue(float value, bool badEffect)
+	{
+		string color = COLOR_GREEN;
+		if (badEffect)
+		{
+			color = COLOR_RED;
+		}
+		return "#STR_TERJECORE_EFFECT_LEVEL_0 " + color + (int)(value) + COLOR_END + "#STR_TERJECORE_EFFECT_LEVEL_1 ";
+	}
+	
+	private string PercentValue(float value, bool badEffect)
+	{
+		string sign = "-";
+		string color = COLOR_GREEN;
+		if (badEffect)
+		{
+			sign = "+";
+			color = COLOR_RED;
+		}
+		return color + sign + (int)(value * 100) + " %" + COLOR_END + " ";
+	}
+	
+	private string StatValue(float value, string stat)
+	{
+		string sign = "";
+		string color = COLOR_RED;
+		if (value > 0 )
+		{
+			sign = "+";
+			if (stat == "EXP") color = COLOR_BLUE;
+			else color = COLOR_GREEN;
+		}
+		return color + sign + (int)(value) + COLOR_END + " " + stat + NEXT_LINE;
+	}
+	
 }
