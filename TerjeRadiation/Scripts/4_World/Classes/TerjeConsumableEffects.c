@@ -14,9 +14,9 @@ modded class TerjeConsumableEffects
 			float medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntiradTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				int MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntirad");
-				float ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetAntirad(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				int medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antirad");
+				float medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntirad(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 	}
