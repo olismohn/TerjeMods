@@ -36,7 +36,7 @@ class CfgVehicles
 		medAntiradLevel=3;
 		medAntiradTimeSec=600;
 		medAntiradMaxTimeSec=1800;
-		overdosedIncrement = 0.75;
+		overdosedIncrement=0.75;
 		medicalItem=1;
 		medSkillExpAddToSelf=50;
 		medicalInjectorsCategory=1;
