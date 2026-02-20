@@ -28,7 +28,7 @@ class TerjePerkTooltip
 			int nextSkillLevel = perkCfg.GetRequiredSkillLevel(perkLevel);
 			int nextPerkPoints = perkCfg.GetRequiredPerkPoints(perkLevel);
 			info = info + "<br/>#STR_TERJESKILL_MISC5 <color rgba='0,148,255,255'>" + nextPerkPoints + "</color> #STR_TERJESKILL_MISC6 <color rgba='0,148,255,255'>" + nextSkillLevel + "</color>";
-						
+			
 			if (nextValueRaw != 0)
 			{
 				string nextValuePercentage = TerjeMathHelper.ToDisplayPercent(nextValueRaw);
