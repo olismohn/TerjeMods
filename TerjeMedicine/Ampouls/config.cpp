@@ -37,7 +37,7 @@ class CfgVehicles
 		medPainkillerMaxTimeSec=1800;
 		medAntipoisonMaxTimeSec=1800;
 		medAntibiohazardMaxTimeSec=1800;
-		medAntibioticsMaxTimeSec=1800;
+		medAntibioticMaxTimeSec=1800;
 		medRabiesAntibioticMaxTimeSec=1800;
 		medZAntidotMaxTimeSec=1800;
 		medAntisepsisMaxTimeSec=1800;
