@@ -139,18 +139,22 @@ class TerjeConsumableEffects
 		}
 		if (TerjeDescribePositiveEffects(classname) != "")
 		{
-			result += COLOR_GREEN + "#STR_TERJECORE_EFFECT_POSITIVE" + COLOR_END + NEXT_LINE;
+			if (result != "") result += NEXT_LINE;
+			
+			result += "<b>" + COLOR_GREEN + "#STR_TERJECORE_EFFECT_POSITIVE" + COLOR_END + "</b>" + NEXT_LINE;
 			result += TerjeDescribePositiveEffects(classname);
 		}
 		if (TerjeDescribeNegativeEffects(classname) != "")
 		{
-			if (TerjeDescribePositiveEffects(classname) != "") result += NEXT_LINE;
-			result += COLOR_YELLOW + "#STR_TERJECORE_EFFECT_NEGATIVE" + COLOR_END + NEXT_LINE;
+			if (result != "") result += NEXT_LINE;
+			
+			result += "<b>" + COLOR_YELLOW + "#STR_TERJECORE_EFFECT_NEGATIVE" + COLOR_END + "</b>" + NEXT_LINE;
 			result += TerjeDescribeNegativeEffects(classname);
 		}
 		if (TerjeDescribeVanillaEffects(entity, classname) != "")
 		{
-			if (TerjeDescribePositiveEffects(classname) != "" || TerjeDescribeNegativeEffects(classname) != "") result += NEXT_LINE;
+			if (result != "") result += NEXT_LINE;
+			
 			result += TerjeDescribeVanillaEffects(entity, classname);
 		}
 		
