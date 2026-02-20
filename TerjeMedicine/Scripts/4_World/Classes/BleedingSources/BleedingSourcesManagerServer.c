@@ -692,8 +692,8 @@ modded class BleedingSourcesManagerServer
 						chemicalPoisonValue=0.0; // Value 1.0 for level 1, 2.0 for level 2 etc...
 						
 						// Influenza
-						infuenzaInfectionChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%
-						infuenzaInfectionValue=0.0; // Value 1.0 for level 1, 2.0 for level 2 etc...
+						influenzaInfectionChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%
+						influenzaInfectionValue=0.0; // Value 1.0 for level 1, 2.0 for level 2 etc...
 						
 						// Radiation (when you have TerjeRadiation mod)
 						radiationChance=0.0; // Chance 0.0 = 0%, 1.0 = 100%
@@ -809,10 +809,10 @@ modded class BleedingSourcesManagerServer
 						m_Player.GetTerjeStats().SetBiohazardValue(m_Player.GetTerjeStats().GetBiohazardValue() + GetTerjeGameConfig().ConfigGetFloat(configRoot + " chemicalPoisonValue"));
 					}
 					
-					value = GetTerjeGameConfig().ConfigGetFloat(configRoot + " infuenzaInfectionChance");
+					value = GetTerjeGameConfig().ConfigGetFloat(configRoot + " influenzaInfectionChance");
 					if (value > 0 && Math.RandomFloat01() < value)
 					{
-						m_Player.GetTerjeStats().SetInfluenzaValue(m_Player.GetTerjeStats().GetInfluenzaValue() + GetTerjeGameConfig().ConfigGetFloat(configRoot + " infuenzaInfectionValue"));
+						m_Player.GetTerjeStats().SetInfluenzaValue(m_Player.GetTerjeStats().GetInfluenzaValue() + GetTerjeGameConfig().ConfigGetFloat(configRoot + " influenzaInfectionValue"));
 					}
 					
 					value = GetTerjeGameConfig().ConfigGetFloat(configRoot + " radiationChance");
