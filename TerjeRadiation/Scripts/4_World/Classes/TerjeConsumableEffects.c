@@ -38,6 +38,12 @@ modded class TerjeConsumableEffects
 		
 		result += TerjeGetEffectString_Level("Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
 		
+		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
+		if (medDmgValue < 0)
+		{
+			result += "   " + PercentValue(medDmgValue, 0) + "#STR_TERJERAD_EFFECT_RADIATION " + NEXT_LINE;
+		}
+		
 		return result;
 	}
 	
@@ -46,11 +52,9 @@ modded class TerjeConsumableEffects
 		string result = super.TerjeDescribeNegativeEffects(classname);
 		
 		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
-		if (medDmgValue != 0)
+		if (medDmgValue > 0)
 		{
-			bool badEffect = false;
-			if (medDmgValue < 0) badEffect = true;
-			result += PercentValue(medDmgValue, badEffect) + "#STR_TERJERAD_EFFECT_RADIATION " + NEXT_LINE;
+			result += "   " + PercentValue(medDmgValue, 1) + "#STR_TERJERAD_EFFECT_RADIATION " + NEXT_LINE;
 		}
 		
 		return result;

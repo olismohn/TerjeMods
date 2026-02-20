@@ -137,10 +137,18 @@ class TerjeConsumableEffects
 				result += skill.GetDisplayName() + " " + StatValue(skillIncrement, "EXP");
 			}
 		}
-		
-		result += TerjeDescribeVanillaEffects(entity, classname);
-		result += TerjeDescribeNegativeEffects(classname);
-		result += TerjeDescribePositiveEffects(classname);
+		if (TerjeDescribePositiveEffects(classname))
+		{
+			result += COLOR_GREEN + "#STR_TERJECORE_EFFECT_POSITIVE" + COLOR_END + NEXT_LINE;
+			result += TerjeDescribePositiveEffects(classname);
+		}
+		if (TerjeDescribeVanillaEffects(entity, classname) || TerjeDescribeNegativeEffects(classname))
+		{
+			if (TerjeDescribePositiveEffects(classname)) result += NEXT_LINE;
+			result += COLOR_YELLOW + "#STR_TERJECORE_EFFECT_NEGATIVE" + COLOR_END + NEXT_LINE;
+			result += TerjeDescribeNegativeEffects(classname);
+			result += TerjeDescribeVanillaEffects(entity, classname);
+		}
 		
 		return result;
 	}
@@ -218,7 +226,7 @@ class TerjeConsumableEffects
 		float medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " med" + medication + "TimeSec" );
 		if (medLevel > 0 && medTimeSec > 0)
 		{
-			return LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
+			return "   " + LevelValue(medLevel, 0) + effect + " " + TimeValue(medTimeSec);
 		}
 		
 		return "";
@@ -229,7 +237,7 @@ class TerjeConsumableEffects
 		int medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Set" );
 		if (medLevel > 0)
 		{
-			return LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
+			return "   " + LevelValue(medLevel, 1) + effect + " " + NEXT_LINE;
 		}
 		
 		return "";
@@ -245,7 +253,7 @@ class TerjeConsumableEffects
 				float medValue = GetTerjeGameConfig().ConfigGetInt( classname + " med" + medication + "Value" );
 				TerjeLog_Info("medImmunityGainValue=" + medValue + "; medImmunityGainTimeSec=" + medTimeSec);
 			}
-			return COLOR_YELLOW + effect + COLOR_END + " " + TimeValue(medTimeSec);
+			return "   " + effect + " " + TimeValue(medTimeSec);
 		}
 		
 		return "";
@@ -256,7 +264,7 @@ class TerjeConsumableEffects
 		float medTimeSec = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "DamageTimeSec");
 		if (medTimeSec > 0)
 		{
-			return COLOR_RED + effect + " " + COLOR_END + TimeValue(medTimeSec);
+			return "   " + effect + " " + TimeValue(medTimeSec);
 		}
 		
 		return "";
@@ -267,7 +275,7 @@ class TerjeConsumableEffects
 		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " med" + medication + "Increment");
 		if (medValue > 0)
 		{
-			return COLOR_RED + effect + " " + COLOR_END + NEXT_LINE;
+			return "   " + effect + " " + NEXT_LINE;
 		}
 		
 		return "";
@@ -278,7 +286,7 @@ class TerjeConsumableEffects
 		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " " + medication + "Increment");
 		if (medValue > 0)
 		{
-			return PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
+			return "   " + PercentValue(medValue, 1) + effect + " " + NEXT_LINE;
 		}
 		
 		return "";
@@ -289,7 +297,7 @@ class TerjeConsumableEffects
 		float medValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medContussion" + medication);
 		if (medValue > 0)
 		{
-			return COLOR_RED + effect + " " + COLOR_END + NEXT_LINE;
+			return "   " + effect + " " + NEXT_LINE;
 		}
 		
 		return "";

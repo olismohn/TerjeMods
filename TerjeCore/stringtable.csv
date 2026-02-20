@@ -30,3 +30,6 @@
 "STR_TERJECORE_COND_PERK","perk level","perk level","úroveň perku","das niveau des Perks","уровень перка","poziom profitu","perk szint","livello di vantaggio","nivel de beneficio","niveau d'avantage","振作水平","特典レベル","nível de vantagem","振作水平",
 "STR_TERJECORE_COND_REQ","Requires","Requires","Vyžadovat","Erforderlich","Требуется","Potrzebnym","Szükséges","Cercasi","Necesario","Se demander","是必需的","が必要です","Exigir","是必需的",
 "STR_TERJECORE_CRAFT_BLOCK","Failed to craft","Failed to craft","Nelze vytvořit","Konnte nicht erstellt werden","Не удалось создать","Nie można utworzyć","Nem sikerült létrehozni","Impossibile creare","No se pudo crear","Impossible de créer","创建失败","作成に失敗しました","Não foi possível criar","创建失败",
+
+STR_TERJECORE_EFFECT_POSITIVE,TREATMENT:,TREATMENT:,LÉČBA:,BEHANDLUNG:,ЛЕЧЕНИЕ:,LECZENIE:,KEZELÉS:,TRATTAMENTO:,TRATAMIENTO:,TRAITEMENT:,治療：,処理：,TRATAMENTO:,治疗：
+STR_TERJECORE_EFFECT_NEGATIVE,SIDE EFFECTS:,SIDE EFFECTS:,NEŽÁDOUCÍ ÚČINKY:,NEBENWIRKUNGEN:,ПОБОЧНЫЕ ЭФФЕКТЫ:,SKUTKI UBOCZNE:,MELLÉKHATÁSOK:,EFFETTI COLLATERALI:,EFECTOS SECUNDARIOS:,EFFETS SECONDAIRES :,副作用：,副作用:,EFEITOS COLATERAIS:,副作用：
