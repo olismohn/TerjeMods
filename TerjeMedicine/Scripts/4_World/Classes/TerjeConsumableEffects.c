@@ -10,8 +10,8 @@ modded class TerjeConsumableEffects
 		float medActiveValue;
 		float medActiveTimeSec;
 		
-		int MaxTimeSec;
-		float ActiveTimeSec;
+		int medMaxTimeSec;
+		float medActiveTimeSec;
 		
 		medLevel = GetTerjeGameConfig().ConfigGetInt( classname + " medPainkillerLevel" );
 		if (medLevel > 0)
@@ -25,9 +25,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medPainkillerTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medPainkiller");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetPainkiller(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Painkiller");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetPainkiller(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -43,9 +43,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibioticTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntibiotics");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetAntibiotic(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antibiotic");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntibiotic(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -61,9 +61,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medRabiesAntibioticTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medRabiesAntibiotic");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetRabiesCure(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "RabiesAntibiotic");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetRabiesCure(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -77,9 +77,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntipoisonTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntipoison");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetAntipoison(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antipoison");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntipoison(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -93,9 +93,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntibiohazardTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntibiohazard");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetAntibiohazard(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antibiohazard");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntibiohazard(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -109,9 +109,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntidepresantTimeSec" );
 			if (medLevel >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntidepresant");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetAntidepresant(medLevel, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antidepresant");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetAntidepresant(medLevel, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -125,9 +125,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medBloodHemostaticTimeSec" );
 			if (medValue >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medBloodHemostatic");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetHemostatic(medValue, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "BloodHemostatic");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetHemostatic(medValue, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -141,9 +141,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medBloodRegenTimeSec" );
 			if (medValue >= medActiveLevel && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medBloodRegen");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetBloodRegen(medValue, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "BloodRegen");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetBloodRegen(medValue, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}	
 		}
 		
@@ -157,9 +157,9 @@ modded class TerjeConsumableEffects
 			medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medImmunityGainTimeSec" );
 			if (medValue >= medActiveValue && medTimeSec > 0)
 			{
-				MaxTimeSec = TerjeGetMaxTimeSec(classname, "medImmunityGain");
-				ActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
-				player.GetTerjeStats().SetImmunityGainValue(medValue, Math.Min(MaxTimeSec, ActiveTimeSec));
+				medMaxTimeSec = TerjeGetMaxTimeSec(classname, "ImmunityGain");
+				medActiveTimeSec = TerjeGetActiveTimeSec(medActiveTimeSec, medTimeSec, amount, perkPharmacMod);
+				player.GetTerjeStats().SetImmunityGainValue(medValue, Math.Min(medMaxTimeSec, medActiveTimeSec));
 			}
 		}
 		
@@ -190,49 +190,49 @@ modded class TerjeConsumableEffects
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medHealthgainTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medHealthgain");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetHealthExtraRegenTimer(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetHealthExtraRegenTimer(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Healthgain");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetHealthExtraRegenTimer(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetHealthExtraRegenTimer(Math.Min(medMaxTimeSec, medActiveTimeSec));
 		}
 		
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medZAntidotTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medZAntidot");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetZAntidotValue(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetZAntidotValue(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "ZAntidot");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetZAntidotValue(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetZAntidotValue(Math.Min(medMaxTimeSec, medActiveTimeSec));
 		}
 		
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAntisepsisTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAntisepsis");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetAntisepsisValue(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetAntisepsisValue(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Antisepsis");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetAntisepsisValue(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetAntisepsisValue(Math.Min(medMaxTimeSec, medActiveTimeSec));
 		}
 		
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medConcussionHealTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medConcussionHeal");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetContusionHealValue(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetContusionHealValue(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "ConcussionHeal");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetContusionHealValue(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetContusionHealValue(Math.Min(medMaxTimeSec, medActiveTimeSec));
 		}
 		
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medHematomaHealTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medHematomaHeal");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetSalveValue(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetSalveValue(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "HematomaHeal");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetSalveValue(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetSalveValue(Math.Min(medMaxTimeSec, medActiveTimeSec));
 		}
 		
 		medTimeSec = GetTerjeGameConfig().ConfigGetFloat( classname + " medAdrenalinTimeSec" );
 		if (medTimeSec > 0)
 		{
-			MaxTimeSec = TerjeGetMaxTimeSec(classname, "medAdrenalin");
-			ActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetAdrenalinValue(), medTimeSec, amount, perkPharmacMod);
-			player.GetTerjeStats().SetAdrenalinValue(Math.Min(MaxTimeSec, ActiveTimeSec));
+			medMaxTimeSec = TerjeGetMaxTimeSec(classname, "Adrenalin");
+			medActiveTimeSec = TerjeGetActiveTimeSec(player.GetTerjeStats().GetAdrenalinValue(), medTimeSec, amount, perkPharmacMod);
+			player.GetTerjeStats().SetAdrenalinValue(Math.Min(medMaxTimeSec, medActiveTimeSec));
 			
 			player.GetStaminaHandler().SetStamina(player.GetStaminaHandler().GetStaminaMax());
 		}
@@ -298,7 +298,7 @@ modded class TerjeConsumableEffects
 			player.GetTerjeStats().SetPoisonValue(player.GetTerjeStats().GetPoisonValue() + (medDmgValue * amount));
 		}
 		
-		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medInfuenzaInfectionIncrement");
+		medDmgValue = GetTerjeGameConfig().ConfigGetFloat(classname + " medInfluenzaInfectionIncrement");
 		if (medDmgValue > 0)
 		{
 			player.GetTerjeStats().SetInfluenzaValue(player.GetTerjeStats().GetInfluenzaValue() + (medDmgValue * amount));
@@ -386,7 +386,7 @@ modded class TerjeConsumableEffects
 		
 		result += TerjeGetEffectString_Increment("Hematomas", "#STR_TERJEMED_EFFECT_DMG_HEMATOMA", classname);
 		result += TerjeGetEffectString_Increment("FoodPoison", "#STR_TERJEMED_EFFECT_DMG_FOODPOISON", classname);
-		result += TerjeGetEffectString_Increment("InfuenzaInfection", "#STR_TERJEMED_EFFECT_DMG_INFLUENZA", classname);
+		result += TerjeGetEffectString_Increment("InfluenzaInfection", "#STR_TERJEMED_EFFECT_DMG_INFLUENZA", classname);
 		result += TerjeGetEffectString_Increment("ZombieVirus", "#STR_TERJEMED_EFFECT_DMG_ZOMBIE", classname);
 		result += TerjeGetEffectString_Increment("SepsisInfection", "#STR_TERJEMED_EFFECT_DMG_SEPSIS", classname);
 		result += TerjeGetEffectString_Increment("RabiesVirus", "#STR_TERJEMED_EFFECT_DMG_RABIES", classname);
