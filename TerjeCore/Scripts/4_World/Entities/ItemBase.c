@@ -344,11 +344,11 @@ modded class ItemBase
 			{
 				int liquid_type = GetLiquidType();
 				string liquidClassName = Liquid.GetLiquidClassname(liquid_type);
-				output = output + medEffects.Describe(null, "CfgLiquidDefinitions " + liquidClassName);
+				output += medEffects.Describe(null, "CfgLiquidDefinitions " + liquidClassName);
 			}
 			else
 			{
-				output = output + medEffects.Describe(this, "CfgVehicles " + GetType());
+				output += medEffects.Describe(this, "CfgVehicles " + GetType());
 			}
 			
 			return true;
