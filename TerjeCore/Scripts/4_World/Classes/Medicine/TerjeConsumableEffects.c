@@ -334,5 +334,4 @@ class TerjeConsumableEffects
 		}
 		return color + sign + (int)(value) + COLOR_END + " " + stat + NEXT_LINE;
 	}
-	
 }
