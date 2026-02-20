@@ -483,7 +483,7 @@ modded class ItemBase
 			this.RPC(TerjeERPC.TerjeRPC_CUSTOM_CALL, sendData, true, null);
 		}
 	}
-		
+	
 	void TerjeStreamToServer(string id, out TerjeStreamRpc stream)
 	{
 		if (GetGame() && GetGame().IsClient())
