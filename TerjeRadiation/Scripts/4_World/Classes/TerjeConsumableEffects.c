@@ -32,9 +32,9 @@ modded class TerjeConsumableEffects
 		}
 	}
 	
-	override private string TerjeDescribePositiveEffects(string classname)
+	override private string DescribePositiveEffects(string classname)
 	{
-		string result = super.TerjeDescribePositiveEffects(classname);
+		string result = super.DescribePositiveEffects(classname);
 		
 		result += TerjeGetEffectString_Level("Antirad", "#STR_TERJERAD_EFFECT_RADPROTECT", classname);
 		
@@ -47,9 +47,9 @@ modded class TerjeConsumableEffects
 		return result;
 	}
 	
-	override private string TerjeDescribeNegativeEffects(string classname)
+	override private string DescribeNegativeEffects(string classname)
 	{
-		string result = super.TerjeDescribeNegativeEffects(classname);
+		string result = super.DescribeNegativeEffects(classname);
 		
 		float medDmgValue = GetTerjeGameConfig().ConfigGetFloat( classname + " medRadiationIncrement" );
 		if (medDmgValue > 0)

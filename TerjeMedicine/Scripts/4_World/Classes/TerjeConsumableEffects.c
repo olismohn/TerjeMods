@@ -343,9 +343,9 @@ modded class TerjeConsumableEffects
 		super.TerjeApplyNegativeEffects(classname, player, amount);
 	}
 	
-	override private string TerjeDescribePositiveEffects(string classname)
+	override private string DescribePositiveEffects(string classname)
 	{
-		string result = super.TerjeDescribePositiveEffects(classname);
+		string result = super.DescribePositiveEffects(classname);
 		
 		result += TerjeGetEffectString_Level("Painkiller", "#STR_TERJEMED_EFFECT_PAINKILLER", classname);
 		result += TerjeGetEffectString_Level("Antibiotic", "#STR_TERJEMED_EFFECT_ANTIBIOTIC", classname);
@@ -374,9 +374,9 @@ modded class TerjeConsumableEffects
 		return result;
 	}
 	
-	override private string TerjeDescribeNegativeEffects(string classname)
+	override private string DescribeNegativeEffects(string classname)
 	{
-		string result = super.TerjeDescribeNegativeEffects(classname);
+		string result = super.DescribeNegativeEffects(classname);
 		
 		result += TerjeGetEffectString_Percent("overdosed", "#STR_TERJEMED_EFFECT_OVERDOSE", classname);
 		result += TerjeGetEffectString_Percent("biohazard", "#STR_TERJEMED_EFFECT_BIOHAZARD", classname);

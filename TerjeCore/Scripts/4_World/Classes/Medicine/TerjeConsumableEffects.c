@@ -126,6 +126,7 @@ class TerjeConsumableEffects
 	string Describe(EntityAI entity, string classname)
 	{
 		string result = "";
+		ItemBase item = ItemBase.Cast(entity);
 		
 		array<ref TerjeSkillCfg> skills();
 		GetTerjeSkillsRegistry().GetSkills(skills);
@@ -137,145 +138,130 @@ class TerjeConsumableEffects
 				result += skill.GetDisplayName() + " " + StatValue(skillIncrement, "EXP");
 			}
 		}
-		if (TerjeDescribePositiveEffects(classname) != "")
+		
+		if (DescribeFoodEffects(item, classname) != "")
+		{
+			result += NEXT_LINE;
+			result += DescribeFoodEffects(item, classname);
+		}
+		if (DescribePositiveEffects(classname) != "")
 		{
 			if (result != "") result += NEXT_LINE;
 			
 			result += "<b>" + COLOR_GREEN + "#STR_TERJECORE_EFFECT_POSITIVE" + COLOR_END + "</b>" + NEXT_LINE;
-			result += TerjeDescribePositiveEffects(classname);
-			result += TerjeDescribePositiveVanillaEffects(entity, classname);
+			result += DescribePositiveEffects(classname);
 		}
-		if (TerjeDescribeNegativeEffects(classname) != "")
+		if (DescribeNegativeEffects(classname) != "")
 		{
 			if (result != "") result += NEXT_LINE;
 			
 			result += "<b>" + COLOR_YELLOW + "#STR_TERJECORE_EFFECT_NEGATIVE" + COLOR_END + "</b>" + NEXT_LINE;
-			result += TerjeDescribeNegativeEffects(classname);
-			result += TerjeDescribeNegativeVanillaEffects(entity, classname);
+			result += DescribeNegativeEffects(classname);
 		}
 		
 		return result;
 	}
 	
-	private string TerjeDescribePositiveVanillaEffects(EntityAI entity, string classname)
+	private string DescribeFoodEffects(ItemBase item, string classname)
 	{
 		string result = "";
-		ItemBase item = ItemBase.Cast(entity);
-		float vanillaStat;
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
-		if (vanillaStat > 0)
+		float energyStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition energy" );
+		if (energyStat == 0 && item && item.GetFoodStage())
 		{
-			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_HEALTH");
+			energyStat = FoodStage.GetEnergy(item.GetFoodStage());
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
-		if (vanillaStat > 0)
+		if (energyStat != 0)
 		{
-			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_BLOOD");
+			result += "#STR_TERJECORE_EFFECT_ENERGY " + StatValue(energyStat, "cal");
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
-		if (vanillaStat > 0)
+		float waterStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition water" );
+		if (waterStat == 0 && item && item.GetFoodStage())
 		{
-			result += StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_SHOCK");
+			waterStat = FoodStage.GetWater(item.GetFoodStage());
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition energy" );
-		if (vanillaStat == 0 && item != null && item.GetFoodStage())
+		if (waterStat != 0)
 		{
-			vanillaStat = FoodStage.GetEnergy(item.GetFoodStage());
-		}
-		if (vanillaStat == 0)
-		{
-			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
-		}
-		if (vanillaStat > 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_ENERGY " + StatValue(vanillaStat, "cal");
-		}
-		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition water" );
-		if (vanillaStat == 0 && item != null && item.GetFoodStage())
-		{
-			vanillaStat = FoodStage.GetWater(item.GetFoodStage());
-		}
-		if (vanillaStat == 0)
-		{
-			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
-		}
-		if (vanillaStat > 0)
-		{
-			result += "#STR_TERJECORE_EFFECT_WATER " + StatValue(vanillaStat, "ml");
+			result += "#STR_TERJECORE_EFFECT_WATER " + StatValue(waterStat, "ml");
 		}
 		
 		return result;
 	}
 	
-	private string TerjeDescribeNegativeVanillaEffects(EntityAI entity, string classname)
+	private string DescribePositiveEffects(string classname)
 	{
 		string result = "";
-		ItemBase item = ItemBase.Cast(entity);
-		float vanillaStat;
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
-		if (vanillaStat < 0)
+		float healthStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
+		if (healthStat > 0)
 		{
-			result += "   " + StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_HEALTH");
+			result += "   " + StatValue(healthStat, "#STR_TERJECORE_EFFECT_HEALTH");
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
-		if (vanillaStat < 0)
+		float bloodStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
+		if (bloodStat > 0)
 		{
-			result += "   " + StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_BLOOD");
+			result += "   " + StatValue(bloodStat, "#STR_TERJECORE_EFFECT_BLOOD");
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
-		if (vanillaStat < 0)
+		float shockStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
+		if (shockStat > 0)
 		{
-			result += "   " + StatValue(vanillaStat, "#STR_TERJECORE_EFFECT_SHOCK");
+			result += "   " + StatValue(shockStat, "#STR_TERJECORE_EFFECT_SHOCK");
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition energy" );
-		if (vanillaStat == 0 && item != null && item.GetFoodStage())
+		float energyStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
+		if (energyStat > 0)
 		{
-			vanillaStat = FoodStage.GetEnergy(item.GetFoodStage());
-		}
-		if (vanillaStat == 0)
-		{
-			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
-		}
-		if (vanillaStat < 0)
-		{
-			result += "   " + "#STR_TERJECORE_EFFECT_ENERGY " + StatValue(vanillaStat, "cal");
+			result += "   " + StatValue(energyStat, "cal #STR_TERJECORE_EFFECT_ENERGY");
 		}
 		
-		vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " Nutrition water" );
-		if (vanillaStat == 0 && item != null && item.GetFoodStage())
+		float waterStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
+		if (waterStat > 0)
 		{
-			vanillaStat = FoodStage.GetWater(item.GetFoodStage());
-		}
-		if (vanillaStat == 0)
-		{
-			vanillaStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
-		}
-		if (vanillaStat < 0)
-		{
-			result += "   " + "#STR_TERJECORE_EFFECT_WATER " + StatValue(vanillaStat, "ml");
+			result += "   " + StatValue(waterStat, "ml #STR_TERJECORE_EFFECT_WATER");
 		}
 		
 		return result;
 	}
 	
-	private string TerjeDescribePositiveEffects(string classname)
+	private string DescribeNegativeEffects(string classname)
 	{
 		string result = "";
-		return result;
-	}
-	
-	private string TerjeDescribeNegativeEffects(string classname)
-	{
-		string result = "";
+		
+		float healthStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddHealth" );
+		if (healthStat < 0)
+		{
+			result += "   " + StatValue(healthStat, "#STR_TERJECORE_EFFECT_HEALTH");
+		}
+		
+		float bloodStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddBlood" );
+		if (bloodStat < 0)
+		{
+			result += "   " + StatValue(bloodStat, "#STR_TERJECORE_EFFECT_BLOOD");
+		}
+		
+		float shockStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddShock" );
+		if (shockStat < 0)
+		{
+			result += "   " + StatValue(shockStat, "#STR_TERJECORE_EFFECT_SHOCK");
+		}
+		
+		float energyStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddEnergy" );
+		if (energyStat < 0)
+		{
+			result += "   " + StatValue(energyStat, "cal #STR_TERJECORE_EFFECT_ENERGY");
+		}
+		
+		float waterStat = GetTerjeGameConfig().ConfigGetFloat( classname + " terjeAddWater" );
+		if (waterStat < 0)
+		{
+			result += "   " + StatValue(waterStat, "ml #STR_TERJECORE_EFFECT_WATER");
+		}
+		
 		return result;
 	}
 	
