@@ -409,8 +409,23 @@ modded class PlayerBase
 	override void OnTerjeRPC(PlayerIdentity sender, string id, ParamsReadContext ctx)
 	{
 		super.OnTerjeRPC(sender, id, ctx);
-		
-		if (id == "tm.body.drag")
+
+		if (id == "tm.mind.weaponfire")
+		{
+			if (GetGame().IsDedicatedServer())
+			{
+				Weapon_Base weapon;
+				if (Weapon_Base.CastTo(weapon, GetItemInHands()))
+				{
+					if (!weapon.IsJammed() && !weapon.IsDamageDestroyed() && weapon.CanFire())
+					{
+						weapon.ProcessWeaponEvent(new WeaponEventTrigger);
+					}
+				}
+			}
+			return;
+		}
+		else if (id == "tm.body.drag")
 		{
 			Param2<vector, vector> dragPayload;
 			if (!ctx.Read(dragPayload))

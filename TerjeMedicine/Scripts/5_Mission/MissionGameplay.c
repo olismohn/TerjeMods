@@ -145,11 +145,9 @@ modded class MissionGameplay
 				int action = Math.RandomInt(0, 8);
 				if (action == 0)
 				{
-					Weapon_Base weapon;
-					WeaponEventBase weapon_event = new WeaponEventTrigger;
-					if ( Weapon_Base.CastTo(weapon, player.GetItemInHands()) )
+					if (Weapon_Base.Cast(player.GetItemInHands()))
 					{
-						weapon.ProcessWeaponEvent(weapon_event);
+						player.TerjeRPCSingleParam("tm.mind.weaponfire", null, true);
 					}
 				}
 				else if (action == 1)
