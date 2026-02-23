@@ -1,5 +1,5 @@
 class TerjeConsumableEffects
-{	
+{
 	const string COLOR_RED = "<color rgba='198,59,64,255'>";
 	const string COLOR_YELLOW = "<color rgba='255,215,0,255'>";
 	const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
