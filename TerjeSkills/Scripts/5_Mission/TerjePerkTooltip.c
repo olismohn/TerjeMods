@@ -1,12 +1,12 @@
 class TerjePerkTooltip
 {
-	const string COLOR_RED = "<color rgba='198,59,64,255'>";
-	const string COLOR_YELLOW = "<color rgba='255,215,0,255'>";
-	const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
-	const string COLOR_BLUE = "<color rgba='0,148,255,255'>";
-	const string COLOR_GREY = "<color rgba='160,160,160,255'>";
-	const string COLOR_END = "</color>";
-	const string NEXT_LINE = "<br/>";
+	static const string COLOR_RED = "<color rgba='198,59,64,255'>";
+	static const string COLOR_YELLOW = "<color rgba='255,215,0,255'>";
+	static const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
+	static const string COLOR_BLUE = "<color rgba='0,148,255,255'>";
+	static const string COLOR_GREY = "<color rgba='160,160,160,255'>";
+	static const string COLOR_END = "</color>";
+	static const string NEXT_LINE = "<br/>";
 	
 	private static ref Widget m_perkTooltipInstance = null;
 	static ref Widget GetPerkTooltipWidget(TerjePerkCfg perkCfg, int perkLevel, int perkActiveLevel, bool canBeUpgraded)
@@ -35,7 +35,7 @@ class TerjePerkTooltip
 			float nextValueRaw = perkCfg.GetValue(perkLevel);
 			int nextSkillLevel = perkCfg.GetRequiredSkillLevel(perkLevel);
 			int nextPerkPoints = perkCfg.GetRequiredPerkPoints(perkLevel);
-			info += NEXT_LINE + "#STR_TERJESKILL_MISC5 " + COLOR_BLUE + nextPerkPoints + COLOR_END + "#STR_TERJESKILL_MISC6 " + COLOR_BLUE + nextSkillLevel + COLOR_END;
+			info += NEXT_LINE + "#STR_TERJESKILL_MISC5 " + COLOR_BLUE + nextPerkPoints + COLOR_END + " #STR_TERJESKILL_MISC6 " + COLOR_BLUE + nextSkillLevel + COLOR_END;
 			
 			if (nextValueRaw != 0)
 			{
