@@ -1,9 +1,9 @@
 class TerjeSkillTooltip
 {
-	const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
-	const string COLOR_BLUE = "<color rgba='0,148,255,255'>";
-	const string COLOR_END = "</color>";
-	const string NEXT_LINE = "<br/>";
+	static const string COLOR_GREEN = "<color rgba='97,215,124,255'>";
+	static const string COLOR_BLUE = "<color rgba='0,148,255,255'>";
+	static const string COLOR_END = "</color>";
+	static const string NEXT_LINE = "<br/>";
 	
 	private static ref Widget m_skillTooltipInstance = null;
 	static ref Widget GetSkillTooltipWidget(TerjeSkillCfg skillCfg, int exp, int points)
